@@ -8,7 +8,7 @@ class LongitudeTest extends \PHPUnit_Framework_TestCase
 {
     public function test_class()
     {
-        $this->assertSame('PickMeUp\Core\Model\Geolocation\Longitude', Longitude::class);
+        static::assertSame('PickMeUp\Core\Model\Geolocation\Longitude', Longitude::class);
     }
 
     /**
@@ -17,7 +17,7 @@ class LongitudeTest extends \PHPUnit_Framework_TestCase
     public function test_it_stores_valid_longitude_value_in_range_minus_90_to_plus_90($value)
     {
         $longitude = new Longitude($value);
-        $this->assertSame($value, $longitude->getValue());
+        static::assertSame($value, $longitude->getValue());
     }
 
     /**
