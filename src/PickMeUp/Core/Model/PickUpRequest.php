@@ -22,13 +22,12 @@ class PickUpRequest
     private $createdAt;
 
     /**
-     * @var int
+     * @var ExpirationMinutes
      */
     private $expirationMinutes;
 
-    public function __construct(User $user, Coordinates $coordinates, \DateTime $createdAt, $expirationMinutes)
+    public function __construct(User $user, Coordinates $coordinates, \DateTime $createdAt, ExpirationMinutes $expirationMinutes)
     {
-
         $this->user = $user;
         $this->coordinates = $coordinates;
         $this->createdAt = $createdAt;
@@ -60,7 +59,7 @@ class PickUpRequest
     }
 
     /**
-     * @return int
+     * @return ExpirationMinutes
      */
     public function getExpirationMinutes()
     {

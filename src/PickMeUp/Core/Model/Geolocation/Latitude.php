@@ -16,7 +16,7 @@ class Latitude
      */
     public function __construct($value)
     {
-        $value = (float)$value;
+        $value = (float) $value;
         if ($value < -90.0 || $value > 90.0) {
             throw new \InvalidArgumentException('Passed value is out of range (-90.0, 90.0)');
         }
