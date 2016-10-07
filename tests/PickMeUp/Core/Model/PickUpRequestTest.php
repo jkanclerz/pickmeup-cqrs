@@ -2,46 +2,21 @@
 
 namespace Tests\PickMeUp\Core\Model;
 
+use PickMeUp\Core\Model\ExpirationMinutes;
 use PickMeUp\Core\Model\Geolocation\Coordinates;
 use PickMeUp\Core\Model\PickUpRequest;
 use PickMeUp\Core\Model\User;
 
 class PickUpRequestTest extends \PHPUnit_Framework_TestCase
 {
-    /**
-     * @dataProvider invalidExpirationMinutesProvider
-     * @expectedException \InvalidArgumentException
-     */
-    public function test_it_cannot_be_initialized_when_invalid_expiration_minutes_is_passed($invalidExpirationMinutesValue)
-    {
-        $user = $this->getMockBuilder(User::class)->disableOriginalConstructor()->getMock();
-        $coordinates = $this->getMockBuilder(Coordinates::class)->disableOriginalConstructor()->getMock();
-        $createdAt = new \DateTime();
-
-        new PickUpRequest($user, $coordinates, $createdAt, $invalidExpirationMinutesValue);
-    }
-
-    /**
-     * @return array
-     */
-    public function invalidExpirationMinutesProvider()
-    {
-        return [
-            ["0"],
-            [new \StdClass()],
-            [new \DateTime()],
-            [-10],
-            [-0.01],
-        ];
-    }
-
     public function test_it_stores_user()
     {
         $user = $this->getMockBuilder(User::class)->disableOriginalConstructor()->getMock();
         $coordinates = $this->getMockBuilder(Coordinates::class)->disableOriginalConstructor()->getMock();
         $createdAt = new \DateTime();
+        $expirationMinutes = $this->getMockBuilder(ExpirationMinutes::class)->disableOriginalConstructor()->getMock();
 
-        $pickUpRequest = new PickUpRequest($user, $coordinates, $createdAt, 0);
+        $pickUpRequest = new PickUpRequest($user, $coordinates, $createdAt, $expirationMinutes);
         static::assertSame($user, $pickUpRequest->getUser());
     }
 
@@ -50,8 +25,9 @@ class PickUpRequestTest extends \PHPUnit_Framework_TestCase
         $user = $this->getMockBuilder(User::class)->disableOriginalConstructor()->getMock();
         $coordinates = $this->getMockBuilder(Coordinates::class)->disableOriginalConstructor()->getMock();
         $createdAt = new \DateTime();
+        $expirationMinutes = $this->getMockBuilder(ExpirationMinutes::class)->disableOriginalConstructor()->getMock();
 
-        $pickUpRequest = new PickUpRequest($user, $coordinates, $createdAt, 0);
+        $pickUpRequest = new PickUpRequest($user, $coordinates, $createdAt, $expirationMinutes);
         static::assertSame($coordinates, $pickUpRequest->getCoordinates());
     }
 
@@ -60,8 +36,9 @@ class PickUpRequestTest extends \PHPUnit_Framework_TestCase
         $user = $this->getMockBuilder(User::class)->disableOriginalConstructor()->getMock();
         $coordinates = $this->getMockBuilder(Coordinates::class)->disableOriginalConstructor()->getMock();
         $createdAt = new \DateTime();
+        $expirationMinutes = $this->getMockBuilder(ExpirationMinutes::class)->disableOriginalConstructor()->getMock();
 
-        $pickUpRequest = new PickUpRequest($user, $coordinates, $createdAt, 0);
+        $pickUpRequest = new PickUpRequest($user, $coordinates, $createdAt, $expirationMinutes);
         static::assertSame($createdAt, $pickUpRequest->getCreatedAt());
     }
 
@@ -70,8 +47,9 @@ class PickUpRequestTest extends \PHPUnit_Framework_TestCase
         $user = $this->getMockBuilder(User::class)->disableOriginalConstructor()->getMock();
         $coordinates = $this->getMockBuilder(Coordinates::class)->disableOriginalConstructor()->getMock();
         $createdAt = new \DateTime();
+        $expirationMinutes = $this->getMockBuilder(ExpirationMinutes::class)->disableOriginalConstructor()->getMock();
 
-        $pickUpRequest = new PickUpRequest($user, $coordinates, $createdAt, 0);
-        static::assertSame(0, $pickUpRequest->getExpirationMinutes());
+        $pickUpRequest = new PickUpRequest($user, $coordinates, $createdAt, $expirationMinutes);
+        static::assertSame($expirationMinutes, $pickUpRequest->getExpirationMinutes());
     }
 }

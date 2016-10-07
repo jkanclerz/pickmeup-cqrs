@@ -28,9 +28,6 @@ class PickUpRequest
 
     public function __construct(User $user, Coordinates $coordinates, \DateTime $createdAt, $expirationMinutes)
     {
-        if (!is_int($expirationMinutes) || $expirationMinutes < 0) {
-            throw new \InvalidArgumentException();
-        }
 
         $this->user = $user;
         $this->coordinates = $coordinates;
