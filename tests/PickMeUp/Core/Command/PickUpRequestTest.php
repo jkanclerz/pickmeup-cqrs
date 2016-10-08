@@ -1,10 +1,10 @@
 <?php
 
-namespace Tests\PickMeUp\Core\Model;
+namespace Tests\PickMeUp\Core\Command;
 
+use PickMeUp\Core\Command\PickUpRequest;
 use PickMeUp\Core\Model\ExpirationMinutes;
 use PickMeUp\Core\Model\Geolocation\Coordinates;
-use PickMeUp\Core\Model\PickUpRequest;
 use PickMeUp\Core\Model\User;
 
 class PickUpRequestTest extends \PHPUnit_Framework_TestCase

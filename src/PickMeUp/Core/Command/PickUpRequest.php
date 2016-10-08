@@ -1,8 +1,10 @@
 <?php
 
-namespace PickMeUp\Core\Model;
+namespace PickMeUp\Core\Command;
 
+use PickMeUp\Core\Model\ExpirationMinutes;
 use PickMeUp\Core\Model\Geolocation\Coordinates;
+use PickMeUp\Core\Model\User;
 
 class PickUpRequest
 {
