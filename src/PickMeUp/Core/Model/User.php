@@ -4,8 +4,15 @@ namespace PickMeUp\Core\Model;
 
 class User
 {
+    /**
+     * @var string
+     */
     private $uuid;
 
+    /**
+     * User constructor.
+     * @param $uuid
+     */
     public function __construct($uuid)
     {
         $this->uuid = $uuid;

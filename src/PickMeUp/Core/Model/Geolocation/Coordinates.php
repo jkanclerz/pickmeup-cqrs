@@ -13,9 +13,13 @@ class Coordinates
      */
     private $longitude;
 
+    /**
+     * Coordinates constructor.
+     * @param Latitude $latitude
+     * @param Longitude $longitude
+     */
     public function __construct(Latitude $latitude, Longitude $longitude)
     {
-
         $this->latitude = $latitude;
         $this->longitude = $longitude;
     }

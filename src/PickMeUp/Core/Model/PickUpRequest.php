@@ -26,6 +26,13 @@ class PickUpRequest
      */
     private $expirationMinutes;
 
+    /**
+     * PickUpRequest constructor.
+     * @param User $user
+     * @param Coordinates $coordinates
+     * @param \DateTime $createdAt
+     * @param ExpirationMinutes $expirationMinutes
+     */
     public function __construct(User $user, Coordinates $coordinates, \DateTime $createdAt, ExpirationMinutes $expirationMinutes)
     {
         $this->user = $user;

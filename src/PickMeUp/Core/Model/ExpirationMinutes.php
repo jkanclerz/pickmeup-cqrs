@@ -9,6 +9,10 @@ class ExpirationMinutes
      */
     protected $value;
 
+    /**
+     * ExpirationMinutes constructor.
+     * @param $value
+     */
     public function __construct($value)
     {
         if (!is_int($value)) {
