@@ -2,10 +2,10 @@
 
 namespace Tests\PickMeUp\Integration\Silex\Controller;
 
-use PickMeUp\App\Command\PickUpRequest;
+use PickMeUp\App\Command\PickUpRequestCommand;
 use PickMeUp\App\Handler\PickUpRequestHandler;
 use PickMeUp\Integration\Silex\Controller\PickUpRequestController;
-use PickMeUp\Integration\Silex\Factory\PickUpRequestFactory;
+use PickMeUp\Integration\Silex\Factory\PickUpRequestCommandFactory;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -15,51 +15,51 @@ class PickUpRequestControllerTest extends \PHPUnit_Framework_TestCase
     {
         $request = $this->getRequestMockWithInvalidParams();
         $handler = $this->getMockBuilder(PickUpRequestHandler::class)->disableOriginalConstructor()->getMock();
-        $factory = $this->getMockBuilder(PickUpRequestFactory::class)->disableOriginalConstructor()->getMock();
+        $factory = $this->getMockBuilder(PickUpRequestCommandFactory::class)->disableOriginalConstructor()->getMock();
         $factory->method('create')->willThrowException($this->getMockBuilder('\InvalidArgumentException')->getMock());
 
         $controller = new PickUpRequestController($handler, $factory);
-        $controller->postPickUpRequest($request);
+        $controller->post($request);
     }
 
     public function test_it_returns_400_http_code_when_input_request_params_are_not_valid()
     {
         $request = $this->getRequestMockWithInvalidParams();
         $handler = $this->getMockBuilder(PickUpRequestHandler::class)->disableOriginalConstructor()->getMock();
-        $factory = $this->getMockBuilder(PickUpRequestFactory::class)->disableOriginalConstructor()->getMock();
+        $factory = $this->getMockBuilder(PickUpRequestCommandFactory::class)->disableOriginalConstructor()->getMock();
         $factory->method('create')->willThrowException($this->getMockBuilder('\InvalidArgumentException')->getMock());
 
         $controller = new PickUpRequestController($handler, $factory);
-        $response = $controller->postPickUpRequest($request);
+        $response = $controller->post($request);
         static::assertSame(Response::HTTP_BAD_REQUEST, $response->getStatusCode());
     }
 
     public function test_pick_up_request_handler_should_be_called_when_pickuprequest_is_succesfuly_created()
     {
         $request = $this->getMockBuilder(Request::class)->disableOriginalConstructor()->getMock();
-        $pickUpRequest = $this->getMockBuilder(PickUpRequest::class)->disableOriginalConstructor()->getMock();
-        $factory = $this->getMockBuilder(PickUpRequestFactory::class)->disableOriginalConstructor()->getMock();
+        $pickUpRequest = $this->getMockBuilder(PickUpRequestCommand::class)->disableOriginalConstructor()->getMock();
+        $factory = $this->getMockBuilder(PickUpRequestCommandFactory::class)->disableOriginalConstructor()->getMock();
         $factory->expects(static::once())->method('create')->willReturn($pickUpRequest);
 
         $handler = $this->getMockBuilder(PickUpRequestHandler::class)->disableOriginalConstructor()->getMock();
         $handler->expects(self::once())->method('handle');
 
         $controller = new PickUpRequestController($handler, $factory);
-        $controller->postPickUpRequest($request);
+        $controller->post($request);
     }
 
     public function test_it_returns_200_http_code_when_pick_up_request_is_successfuly_handled()
     {
         $request = $this->getMockBuilder(Request::class)->disableOriginalConstructor()->getMock();
-        $pickUpRequest = $this->getMockBuilder(PickUpRequest::class)->disableOriginalConstructor()->getMock();
-        $factory = $this->getMockBuilder(PickUpRequestFactory::class)->disableOriginalConstructor()->getMock();
+        $pickUpRequest = $this->getMockBuilder(PickUpRequestCommand::class)->disableOriginalConstructor()->getMock();
+        $factory = $this->getMockBuilder(PickUpRequestCommandFactory::class)->disableOriginalConstructor()->getMock();
         $factory->expects(static::once())->method('create')->willReturn($pickUpRequest);
 
         $handler = $this->getMockBuilder(PickUpRequestHandler::class)->disableOriginalConstructor()->getMock();
         $handler->expects(self::once())->method('handle')->with($pickUpRequest);
 
         $controller = new PickUpRequestController($handler, $factory);
-        $response = $controller->postPickUpRequest($request);
+        $response = $controller->post($request);
         static::assertSame(Response::HTTP_OK, $response->getStatusCode());
     }
 

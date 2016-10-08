@@ -2,8 +2,8 @@
 
 namespace Tests\PickMeUp\Integration\Silex\Factory;
 
-use PickMeUp\App\Command\PickUpRequest;
-use PickMeUp\Integration\Silex\Factory\PickUpRequestFactory;
+use PickMeUp\App\Command\PickUpRequestCommand;
+use PickMeUp\Integration\Silex\Factory\PickUpRequestCommandFactory;
 
 class PickUpRequestFactoryTest extends \PHPUnit_Framework_TestCase
 {
@@ -20,15 +20,15 @@ class PickUpRequestFactoryTest extends \PHPUnit_Framework_TestCase
         $longitudeEnd
 
     ) {
-        $factory = new PickUpRequestFactory();
+        $factory = new PickUpRequestCommandFactory();
         $factory->create($userUuid, $expirationMinutes, $latitudeStart, $longitudeStart, $latitudeEnd, $longitudeEnd);
     }
 
     public function test_it_creates_pick_up_request_for_valid_parameters()
     {
-        $factory = new PickUpRequestFactory();
+        $factory = new PickUpRequestCommandFactory();
         $pickUpRequest = $factory->create('user', 5, 49.001, 15.1332, 48.998801, 14.12442);
-        $this->assertInstanceOf(PickUpRequest::class, $pickUpRequest);
+        static::assertInstanceOf(PickUpRequestCommand::class, $pickUpRequest);
     }
 
     /**

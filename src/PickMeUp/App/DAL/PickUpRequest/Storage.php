@@ -2,14 +2,14 @@
 
 namespace PickMeUp\App\DAL\PickUpRequest;
 
-use PickMeUp\App\Command\PickUpRequest;
+use PickMeUp\App\Command\PickUpRequestCommand;
 
 interface Storage
 {
     /**
-     * @param PickUpRequest $pickUpRequest
+     * @param PickUpRequestCommand $pickUpRequest
      * @throws \Exception
      * @return void
      */
-    public function save(PickUpRequest $pickUpRequest);
+    public function save(PickUpRequestCommand $pickUpRequest);
 }

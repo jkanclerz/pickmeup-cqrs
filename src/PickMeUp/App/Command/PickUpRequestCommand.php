@@ -6,7 +6,7 @@ use PickMeUp\App\Model\ExpirationMinutes;
 use PickMeUp\App\Model\Geolocation\Coordinates;
 use PickMeUp\App\Model\User;
 
-class PickUpRequest
+class PickUpRequestCommand
 {
     /**
      * @var User
@@ -34,7 +34,6 @@ class PickUpRequest
     private $expirationMinutes;
 
     /**
-     * PickUpRequest constructor.
      * @param User $user
      * @param Coordinates $coordinatesStart
      * @param Coordinates $coordinatesEnd

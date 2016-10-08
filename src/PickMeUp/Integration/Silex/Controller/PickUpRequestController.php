@@ -3,7 +3,7 @@
 namespace PickMeUp\Integration\Silex\Controller;
 
 use PickMeUp\App\Handler\PickUpRequestHandler;
-use PickMeUp\Integration\Silex\Factory\PickUpRequestFactory;
+use PickMeUp\Integration\Silex\Factory\PickUpRequestCommandFactory;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -24,16 +24,16 @@ class PickUpRequestController
     private $handler;
 
     /**
-     * @var PickUpRequestFactory
+     * @var PickUpRequestCommandFactory
      */
     private $factory;
 
     /**
      * PickUpRequestController constructor.
      * @param PickUpRequestHandler $handler
-     * @param PickUpRequestFactory $factory
+     * @param PickUpRequestCommandFactory $factory
      */
-    public function __construct(PickUpRequestHandler $handler, PickUpRequestFactory $factory)
+    public function __construct(PickUpRequestHandler $handler, PickUpRequestCommandFactory $factory)
     {
         $this->handler = $handler;
         $this->factory = $factory;
@@ -43,10 +43,10 @@ class PickUpRequestController
      * @param Request $request
      * @return Response
      */
-    public function postPickUpRequest(Request $request)
+    public function post(Request $request)
     {
         try {
-            $pickUpRequest = $this->factory->create(
+            $command = $this->factory->create(
                 $request->get(PickUpRequestController::KEY_USER_UUID),
                 $request->get(PickUpRequestController::KEY_EXPIRATION_MINUTES),
                 $request->get(PickUpRequestController::KEY_LATITUDE_START),
@@ -54,7 +54,7 @@ class PickUpRequestController
                 $request->get(PickUpRequestController::KEY_LATITUDE_END),
                 $request->get(PickUpRequestController::KEY_LONGITUDE_END)
             );
-            $this->handler->handle($pickUpRequest);
+            $this->handler->handle($command);
 
             return new Response();
         } catch (\InvalidArgumentException $e) {

@@ -2,7 +2,7 @@
 
 namespace PickMeUp\App\Handler;
 
-use PickMeUp\App\Command\PickUpRequest;
+use PickMeUp\App\Command\PickUpRequestCommand;
 use PickMeUp\App\DAL\PickUpRequest\Storage;
 
 class PickUpRequestHandler
@@ -22,9 +22,9 @@ class PickUpRequestHandler
     }
 
     /**
-     * @param PickUpRequest $pickUpRequest
+     * @param PickUpRequestCommand $pickUpRequest
      */
-    public function handle(PickUpRequest $pickUpRequest)
+    public function handle(PickUpRequestCommand $pickUpRequest)
     {
         $this->storage->save($pickUpRequest);
     }
