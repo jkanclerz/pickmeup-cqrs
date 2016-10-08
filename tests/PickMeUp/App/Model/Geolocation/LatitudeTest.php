@@ -1,14 +1,14 @@
 <?php
 
-namespace Tests\PickMeUp\Core\Model\Geolocation;
+namespace Tests\PickMeUp\App\Model\Geolocation;
 
-use PickMeUp\Core\Model\Geolocation\Latitude;
+use PickMeUp\App\Model\Geolocation\Latitude;
 
 class LatitudeTest extends \PHPUnit_Framework_TestCase
 {
     public function test_class()
     {
-        static::assertSame('PickMeUp\Core\Model\Geolocation\Latitude', Latitude::class);
+        static::assertSame('PickMeUp\App\Model\Geolocation\Latitude', Latitude::class);
     }
 
     /**

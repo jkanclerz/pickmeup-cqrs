@@ -1,8 +1,8 @@
 <?php
 
-namespace Tests\PickMeUp\Core\Model;
+namespace Tests\PickMeUp\App\Model;
 
-use PickMeUp\Core\Model\User;
+use PickMeUp\App\Model\User;
 
 class UserTest extends \PHPUnit_Framework_TestCase
 {

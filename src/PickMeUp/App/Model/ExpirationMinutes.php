@@ -1,6 +1,6 @@
 <?php
 
-namespace PickMeUp\Core\Model;
+namespace PickMeUp\App\Model;
 
 class ExpirationMinutes
 {

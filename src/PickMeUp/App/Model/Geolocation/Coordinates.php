@@ -1,6 +1,6 @@
 <?php
 
-namespace PickMeUp\Core\Model\Geolocation;
+namespace PickMeUp\App\Model\Geolocation;
 
 class Coordinates
 {

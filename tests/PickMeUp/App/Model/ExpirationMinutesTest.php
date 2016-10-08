@@ -1,8 +1,8 @@
 <?php
 
-namespace Tests\PickMeUp\Core\Model;
+namespace Tests\PickMeUp\App\Model;
 
-use PickMeUp\Core\Model\ExpirationMinutes;
+use PickMeUp\App\Model\ExpirationMinutes;
 
 class ExpirationMinutesTest extends \PHPUnit_Framework_TestCase
 {

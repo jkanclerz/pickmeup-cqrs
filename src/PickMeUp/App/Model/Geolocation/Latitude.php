@@ -1,8 +1,8 @@
 <?php
 
-namespace PickMeUp\Core\Model\Geolocation;
+namespace PickMeUp\App\Model\Geolocation;
 
-class Longitude
+class Latitude
 {
     /**
      * @var float
@@ -10,15 +10,15 @@ class Longitude
     private $value;
 
     /**
-     * Longitude constructor.
+     * Latitude constructor.
      * @param $value
      * @throws \InvalidArgumentException
      */
     public function __construct($value)
     {
         $value = (float) $value;
-        if ($value < -180.0 || $value > 180.0) {
-            throw new \InvalidArgumentException('Passed value is out of range (-180.0, 180.0)');
+        if ($value < -90.0 || $value > 90.0) {
+            throw new \InvalidArgumentException('Passed value is out of range (-90.0, 90.0)');
         }
 
         $this->value = $value;

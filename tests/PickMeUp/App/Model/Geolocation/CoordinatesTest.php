@@ -1,10 +1,10 @@
 <?php
 
-namespace Tests\PickMeUp\Core\Model\Geolocation;
+namespace Tests\PickMeUp\App\Model\Geolocation;
 
-use PickMeUp\Core\Model\Geolocation\Coordinates;
-use PickMeUp\Core\Model\Geolocation\Latitude;
-use PickMeUp\Core\Model\Geolocation\Longitude;
+use PickMeUp\App\Model\Geolocation\Coordinates;
+use PickMeUp\App\Model\Geolocation\Latitude;
+use PickMeUp\App\Model\Geolocation\Longitude;
 
 class CoordinatesTest extends \PHPUnit_Framework_TestCase
 {
