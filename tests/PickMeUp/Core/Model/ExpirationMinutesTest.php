@@ -29,6 +29,12 @@ class ExpirationMinutesTest extends \PHPUnit_Framework_TestCase
         ];
     }
 
+    public function test_it_allows_zero_value()
+    {
+        $expirationMinutes = new ExpirationMinutes(0);
+        static::assertSame(0, $expirationMinutes->getValue());
+    }
+
     public function test_it_stores_expiration_minutes_value()
     {
         $expirationMinutes = new ExpirationMinutes(10);

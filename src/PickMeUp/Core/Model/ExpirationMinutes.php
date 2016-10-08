@@ -11,9 +11,14 @@ class ExpirationMinutes
 
     public function __construct($value)
     {
-        if (!is_int($value) || $value < 0) {
+        if (!is_int($value)) {
             throw new \InvalidArgumentException();
         }
+
+        if ($value < 0) {
+            throw new \InvalidArgumentException();
+        }
+
         $this->value = $value;
     }
 
