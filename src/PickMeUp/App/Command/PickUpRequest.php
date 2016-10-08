@@ -16,7 +16,12 @@ class PickUpRequest
     /**
      * @var Coordinates
      */
-    private $coordinates;
+    private $coordinatesStart;
+
+    /**
+     * @var Coordinates
+     */
+    private $coordinatesEnd;
 
     /**
      * @var \DateTime
@@ -31,14 +36,16 @@ class PickUpRequest
     /**
      * PickUpRequest constructor.
      * @param User $user
-     * @param Coordinates $coordinates
+     * @param Coordinates $coordinatesStart
+     * @param Coordinates $coordinatesEnd
      * @param \DateTime $createdAt
      * @param ExpirationMinutes $expirationMinutes
      */
-    public function __construct(User $user, Coordinates $coordinates, \DateTime $createdAt, ExpirationMinutes $expirationMinutes)
+    public function __construct(User $user, Coordinates $coordinatesStart, Coordinates $coordinatesEnd, \DateTime $createdAt, ExpirationMinutes $expirationMinutes)
     {
         $this->user = $user;
-        $this->coordinates = $coordinates;
+        $this->coordinatesStart = $coordinatesStart;
+        $this->coordinatesEnd = $coordinatesEnd;
         $this->createdAt = $createdAt;
         $this->expirationMinutes = $expirationMinutes;
     }
@@ -49,14 +56,6 @@ class PickUpRequest
     public function getUser()
     {
         return $this->user;
-    }
-
-    /**
-     * @return Coordinates
-     */
-    public function getCoordinates()
-    {
-        return $this->coordinates;
     }
 
     /**
@@ -73,5 +72,21 @@ class PickUpRequest
     public function getExpirationMinutes()
     {
         return $this->expirationMinutes;
+    }
+
+    /**
+     * @return Coordinates
+     */
+    public function getCoordinatesStart()
+    {
+        return $this->coordinatesStart;
+    }
+
+    /**
+     * @return Coordinates
+     */
+    public function getCoordinatesEnd()
+    {
+        return $this->coordinatesEnd;
     }
 }
