@@ -29,7 +29,6 @@
             <exclude>
                 <directory>./tests</directory>
                 <directory>./vendor</directory>
-                <directory>./www</directory>
             </exclude>
         </whitelist>
     </filter>
