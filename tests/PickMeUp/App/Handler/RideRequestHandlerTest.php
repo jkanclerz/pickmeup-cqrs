@@ -3,21 +3,21 @@
 namespace Tests\PickMeUp\AppG\Handler;
 
 use PickMeUp\App\Command\Command;
-use PickMeUp\App\Command\PickUpRequestCommand;
+use PickMeUp\App\Command\RideRequestCommand;
 use PickMeUp\App\DAL\Ride\Storage;
 use PickMeUp\App\Factory\RideFactory;
-use PickMeUp\App\Handler\PickUpRequestHandler;
+use PickMeUp\App\Handler\RideRequestHandler;
 use PickMeUp\App\Model\Ride;
 
-class PickUpRequestHandlerTest extends \PHPUnit_Framework_TestCase
+class RideRequestHandlerTest extends \PHPUnit_Framework_TestCase
 {
-    public function test_it_handles_pick_up_request()
+    public function test_it_handles_ride_request()
     {
         $factory = $this->getMockBuilder(RideFactory::class)->getMock();
         $storage = $this->getMockBuilder(Storage::class)->getMock();
 
-        $command = $this->getMockBuilder(PickUpRequestCommand::class)->disableOriginalConstructor()->getMock();
-        $handler = new PickUpRequestHandler($storage, $factory);
+        $command = $this->getMockBuilder(RideRequestCommand::class)->disableOriginalConstructor()->getMock();
+        $handler = new RideRequestHandler($storage, $factory);
         self::assertTrue($handler->supportsCommand($command));
     }
 
@@ -31,23 +31,23 @@ class PickUpRequestHandlerTest extends \PHPUnit_Framework_TestCase
         $factory = $this->getMockBuilder(RideFactory::class)->getMock();
         $storage = $this->getMockBuilder(Storage::class)->getMock();
 
-        $handler = new PickUpRequestHandler($storage, $factory);
+        $handler = new RideRequestHandler($storage, $factory);
         $handler->handle($command);
     }
     
-    public function test_it_saves_user_pick_up_request_in_storage()
+    public function test_it_saves_user_ride_request_in_storage()
     {
-        $pickUpRequest = $this->getMockBuilder(PickUpRequestCommand::class)->disableOriginalConstructor()->getMock();
+        $rideRequest = $this->getMockBuilder(RideRequestCommand::class)->disableOriginalConstructor()->getMock();
 
         $ride = $this->getMockBuilder(Ride::class)->disableOriginalConstructor()->getMock();
 
         $factory = $this->getMockBuilder(RideFactory::class)->getMock();
-        $factory->expects(self::once())->method('createFromPickUpRequestCommand')->with($pickUpRequest)->willReturn($ride);
+        $factory->expects(self::once())->method('createFromRideRequestCommand')->with($rideRequest)->willReturn($ride);
 
         $storage = $this->getMockBuilder(Storage::class)->getMock();
         $storage->expects(self::once())->method('save')->with($ride);
 
-        $handler = new PickUpRequestHandler($storage, $factory);
-        $handler->handle($pickUpRequest);
+        $handler = new RideRequestHandler($storage, $factory);
+        $handler->handle($rideRequest);
     }
 }

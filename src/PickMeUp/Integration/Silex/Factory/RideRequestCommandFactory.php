@@ -2,14 +2,14 @@
 
 namespace PickMeUp\Integration\Silex\Factory;
 
-use PickMeUp\App\Command\PickUpRequestCommand;
+use PickMeUp\App\Command\RideRequestCommand;
 use PickMeUp\App\Model\ExpirationMinutes;
 use PickMeUp\App\Model\Geolocation\Coordinates;
 use PickMeUp\App\Model\Geolocation\Latitude;
 use PickMeUp\App\Model\Geolocation\Longitude;
 use PickMeUp\App\Model\User;
 
-class PickUpRequestCommandFactory
+class RideRequestCommandFactory
 {
     /**
      * @param $userUuid
@@ -19,7 +19,7 @@ class PickUpRequestCommandFactory
      * @param $latitudeEnd
      * @param $longitudeEnd
      * @throws \InvalidArgumentException
-     * @return PickUpRequestCommand
+     * @return RideRequestCommand
      */
     public function create(
         $userUuid,
@@ -34,6 +34,6 @@ class PickUpRequestCommandFactory
         $coordinatesStart = new Coordinates(new Latitude($latitudeStart), new Longitude($longitudeStart));
         $coordinatesEnd = new Coordinates(new Latitude($latitudeEnd), new Longitude($longitudeEnd));
 
-        return new PickUpRequestCommand($user, $coordinatesStart, $coordinatesEnd, new \DateTime(), $expirationMinutes);
+        return new RideRequestCommand($user, $coordinatesStart, $coordinatesEnd, new \DateTime(), $expirationMinutes);
     }
 }

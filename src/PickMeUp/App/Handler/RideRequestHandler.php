@@ -3,11 +3,11 @@
 namespace PickMeUp\App\Handler;
 
 use PickMeUp\App\Command\Command;
-use PickMeUp\App\Command\PickUpRequestCommand;
+use PickMeUp\App\Command\RideRequestCommand;
 use PickMeUp\App\DAL\Ride\Storage;
 use PickMeUp\App\Factory\RideFactory;
 
-class PickUpRequestHandler implements CommandHandler
+class RideRequestHandler implements CommandHandler
 {
     /**
      * @var Storage
@@ -20,7 +20,7 @@ class PickUpRequestHandler implements CommandHandler
     private $factory;
 
     /**
-     * PickUpRequestHandler constructor.
+     * RideRequestHandler constructor.
      * @param Storage $storage
      * @param RideFactory $factory
      */
@@ -40,8 +40,8 @@ class PickUpRequestHandler implements CommandHandler
             throw new UnsupportedCommandException();
         }
 
-        /** @var \PickMeUp\App\Command\PickUpRequestCommand $command */
-        $ride = $this->factory->createFromPickUpRequestCommand($command);
+        /** @var \PickMeUp\App\Command\RideRequestCommand $command */
+        $ride = $this->factory->createFromRideRequestCommand($command);
         $this->storage->save($ride);
     }
 
@@ -51,6 +51,6 @@ class PickUpRequestHandler implements CommandHandler
      */
     public function supportsCommand(Command $command)
     {
-        return $command instanceof PickUpRequestCommand;
+        return $command instanceof RideRequestCommand;
     }
 }

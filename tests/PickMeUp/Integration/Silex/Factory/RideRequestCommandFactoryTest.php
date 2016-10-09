@@ -2,10 +2,10 @@
 
 namespace Tests\PickMeUp\Integration\Silex\Factory;
 
-use PickMeUp\App\Command\PickUpRequestCommand;
-use PickMeUp\Integration\Silex\Factory\PickUpRequestCommandFactory;
+use PickMeUp\App\Command\RideRequestCommand;
+use PickMeUp\Integration\Silex\Factory\RideRequestCommandFactory;
 
-class PickUpRequestFactoryTest extends \PHPUnit_Framework_TestCase
+class RideRequestFactoryTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @expectedException \InvalidArgumentException
@@ -20,15 +20,15 @@ class PickUpRequestFactoryTest extends \PHPUnit_Framework_TestCase
         $longitudeEnd
 
     ) {
-        $factory = new PickUpRequestCommandFactory();
+        $factory = new RideRequestCommandFactory();
         $factory->create($userUuid, $expirationMinutes, $latitudeStart, $longitudeStart, $latitudeEnd, $longitudeEnd);
     }
 
-    public function test_it_creates_pick_up_request_for_valid_parameters()
+    public function test_it_creates_ride_request_for_valid_parameters()
     {
-        $factory = new PickUpRequestCommandFactory();
-        $pickUpRequest = $factory->create('user', 5, 49.001, 15.1332, 48.998801, 14.12442);
-        static::assertInstanceOf(PickUpRequestCommand::class, $pickUpRequest);
+        $factory = new RideRequestCommandFactory();
+        $rideRequest = $factory->create('user', 5, 49.001, 15.1332, 48.998801, 14.12442);
+        static::assertInstanceOf(RideRequestCommand::class, $rideRequest);
     }
 
     /**

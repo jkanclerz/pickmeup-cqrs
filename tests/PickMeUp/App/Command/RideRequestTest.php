@@ -3,12 +3,12 @@
 namespace Tests\PickMeUp\App\Command;
 
 use PickMeUp\App\Command\Command;
-use PickMeUp\App\Command\PickUpRequestCommand;
+use PickMeUp\App\Command\RideRequestCommand;
 use PickMeUp\App\Model\ExpirationMinutes;
 use PickMeUp\App\Model\Geolocation\Coordinates;
 use PickMeUp\App\Model\User;
 
-class PickUpRequestCommandTest extends \PHPUnit_Framework_TestCase
+class RideRequestCommandTest extends \PHPUnit_Framework_TestCase
 {
     public function test_it_instance_of_command()
     {
@@ -18,8 +18,8 @@ class PickUpRequestCommandTest extends \PHPUnit_Framework_TestCase
         $createdAt = new \DateTime();
         $expirationMinutes = $this->getMockBuilder(ExpirationMinutes::class)->disableOriginalConstructor()->getMock();
 
-        $pickUpRequest = new PickUpRequestCommand($user, $coordinatesStart, $coordinatesEnd, $createdAt, $expirationMinutes);
-        static::assertInstanceOf(Command::class, $pickUpRequest);
+        $rideRequest = new RideRequestCommand($user, $coordinatesStart, $coordinatesEnd, $createdAt, $expirationMinutes);
+        static::assertInstanceOf(Command::class, $rideRequest);
     }
 
     public function test_it_stores_user()
@@ -30,8 +30,8 @@ class PickUpRequestCommandTest extends \PHPUnit_Framework_TestCase
         $createdAt = new \DateTime();
         $expirationMinutes = $this->getMockBuilder(ExpirationMinutes::class)->disableOriginalConstructor()->getMock();
 
-        $pickUpRequest = new PickUpRequestCommand($user, $coordinatesStart, $coordinatesEnd, $createdAt, $expirationMinutes);
-        static::assertSame($user, $pickUpRequest->getUser());
+        $rideRequest = new RideRequestCommand($user, $coordinatesStart, $coordinatesEnd, $createdAt, $expirationMinutes);
+        static::assertSame($user, $rideRequest->getUser());
     }
 
     public function test_it_stores_start_coordinates_of_user()
@@ -42,8 +42,8 @@ class PickUpRequestCommandTest extends \PHPUnit_Framework_TestCase
         $createdAt = new \DateTime();
         $expirationMinutes = $this->getMockBuilder(ExpirationMinutes::class)->disableOriginalConstructor()->getMock();
 
-        $pickUpRequest = new PickUpRequestCommand($user, $coordinatesStart, $coordinatesEnd, $createdAt, $expirationMinutes);
-        static::assertSame($coordinatesStart, $pickUpRequest->getCoordinatesStart());
+        $rideRequest = new RideRequestCommand($user, $coordinatesStart, $coordinatesEnd, $createdAt, $expirationMinutes);
+        static::assertSame($coordinatesStart, $rideRequest->getCoordinatesStart());
     }
 
     public function test_it_stores_end_coordinates_of_user()
@@ -54,8 +54,8 @@ class PickUpRequestCommandTest extends \PHPUnit_Framework_TestCase
         $createdAt = new \DateTime();
         $expirationMinutes = $this->getMockBuilder(ExpirationMinutes::class)->disableOriginalConstructor()->getMock();
 
-        $pickUpRequest = new PickUpRequestCommand($user, $coordinatesStart, $coordinatesEnd, $createdAt, $expirationMinutes);
-        static::assertSame($coordinatesEnd, $pickUpRequest->getCoordinatesEnd());
+        $rideRequest = new RideRequestCommand($user, $coordinatesStart, $coordinatesEnd, $createdAt, $expirationMinutes);
+        static::assertSame($coordinatesEnd, $rideRequest->getCoordinatesEnd());
     }
 
     public function test_it_has_created_at_date()
@@ -66,8 +66,8 @@ class PickUpRequestCommandTest extends \PHPUnit_Framework_TestCase
         $createdAt = new \DateTime();
         $expirationMinutes = $this->getMockBuilder(ExpirationMinutes::class)->disableOriginalConstructor()->getMock();
 
-        $pickUpRequest = new PickUpRequestCommand($user, $coordinatesStart, $coordinatesEnd, $createdAt, $expirationMinutes);
-        static::assertSame($createdAt, $pickUpRequest->getCreatedAt());
+        $rideRequest = new RideRequestCommand($user, $coordinatesStart, $coordinatesEnd, $createdAt, $expirationMinutes);
+        static::assertSame($createdAt, $rideRequest->getCreatedAt());
     }
 
     public function test_it_has_expiration_minutes()
@@ -78,7 +78,7 @@ class PickUpRequestCommandTest extends \PHPUnit_Framework_TestCase
         $createdAt = new \DateTime();
         $expirationMinutes = $this->getMockBuilder(ExpirationMinutes::class)->disableOriginalConstructor()->getMock();
 
-        $pickUpRequest = new PickUpRequestCommand($user, $coordinatesStart, $coordinatesEnd, $createdAt, $expirationMinutes);
-        static::assertSame($expirationMinutes, $pickUpRequest->getExpirationMinutes());
+        $rideRequest = new RideRequestCommand($user, $coordinatesStart, $coordinatesEnd, $createdAt, $expirationMinutes);
+        static::assertSame($expirationMinutes, $rideRequest->getExpirationMinutes());
     }
 }

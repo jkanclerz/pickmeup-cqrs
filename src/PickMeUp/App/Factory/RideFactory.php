@@ -2,12 +2,16 @@
 
 namespace PickMeUp\App\Factory;
 
-use PickMeUp\App\Command\PickUpRequestCommand;
+use PickMeUp\App\Command\RideRequestCommand;
 use PickMeUp\App\Model\Ride;
 
 class RideFactory
 {
-    public function createFromPickUpRequestCommand(PickUpRequestCommand $command)
+    /**
+     * @param RideRequestCommand $command
+     * @return Ride
+     */
+    public function createFromRideRequestCommand(RideRequestCommand $command)
     {
         return new Ride(
             $command->getUser(),

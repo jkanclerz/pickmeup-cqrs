@@ -2,12 +2,12 @@
 
 namespace PickMeUp\Integration\Silex\Controller;
 
-use PickMeUp\App\Handler\PickUpRequestHandler;
-use PickMeUp\Integration\Silex\Factory\PickUpRequestCommandFactory;
+use PickMeUp\App\Handler\RideRequestHandler;
+use PickMeUp\Integration\Silex\Factory\RideRequestCommandFactory;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class PickUpRequestController
+class RideRequestController
 {
     const KEY_USER_UUID = 'user_uuid';
     const KEY_EXPIRATION_MINUTES = 'exp_min';
@@ -19,21 +19,21 @@ class PickUpRequestController
     const KEY_LONGITUDE_END   = 'lng_end';
 
     /**
-     * @var PickUpRequestHandler
+     * @var RideRequestHandler
      */
     private $handler;
 
     /**
-     * @var PickUpRequestCommandFactory
+     * @var RideRequestCommandFactory
      */
     private $factory;
 
     /**
-     * PickUpRequestController constructor.
-     * @param PickUpRequestHandler $handler
-     * @param PickUpRequestCommandFactory $factory
+     * RideRequestController constructor.
+     * @param RideRequestHandler $handler
+     * @param RideRequestCommandFactory $factory
      */
-    public function __construct(PickUpRequestHandler $handler, PickUpRequestCommandFactory $factory)
+    public function __construct(RideRequestHandler $handler, RideRequestCommandFactory $factory)
     {
         $this->handler = $handler;
         $this->factory = $factory;
@@ -47,12 +47,12 @@ class PickUpRequestController
     {
         try {
             $command = $this->factory->create(
-                $request->get(PickUpRequestController::KEY_USER_UUID),
-                $request->get(PickUpRequestController::KEY_EXPIRATION_MINUTES),
-                $request->get(PickUpRequestController::KEY_LATITUDE_START),
-                $request->get(PickUpRequestController::KEY_LONGITUDE_START),
-                $request->get(PickUpRequestController::KEY_LATITUDE_END),
-                $request->get(PickUpRequestController::KEY_LONGITUDE_END)
+                $request->get(RideRequestController::KEY_USER_UUID),
+                $request->get(RideRequestController::KEY_EXPIRATION_MINUTES),
+                $request->get(RideRequestController::KEY_LATITUDE_START),
+                $request->get(RideRequestController::KEY_LONGITUDE_START),
+                $request->get(RideRequestController::KEY_LATITUDE_END),
+                $request->get(RideRequestController::KEY_LONGITUDE_END)
             );
             $this->handler->handle($command);
 
