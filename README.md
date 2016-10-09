@@ -1,5 +1,16 @@
 # PickMeUp! CQRS/ES Implementation Application
 
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/welltested/interview/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/welltested/interview/?branch=master)
-[![Code Coverage](https://scrutinizer-ci.com/g/welltested/interview/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/welltested/interview/?branch=master)
-[![Build Status](https://scrutinizer-ci.com/g/welltested/interview/badges/build.png?b=master)](https://scrutinizer-ci.com/g/welltested/interview/build-status/master)
+This repository has been created to check, learn and code in CQRS/ES convention.
+
+Don't consider this as a "real" and correct CQRS/ES implementation also at this stage. 
+It's just my playground.
+
+
+As you can see, i do my best to keep code clean and &raquo;well tested&laquo;. 
+
+That's why i use [PHPUnit](https://phpunit.de/), [Scrutinizer-CI](https://scrutinizer-ci.com/g/welltested/pickmeup-cqrs/) and [Humbug](https://github.com/padraic/humbug) (mutation testing tool to create tests even more rigorous).
+
+
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/welltested/pickmeup-cqrs/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/welltested/pickmeup-cqrs/?branch=master)
+[![Code Coverage](https://scrutinizer-ci.com/g/welltested/pickmeup-cqrs/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/welltested/pickmeup-cqrs/?branch=master)
+[![Build Status](https://scrutinizer-ci.com/g/welltested/pickmeup-cqrs/badges/build.png?b=master)](https://scrutinizer-ci.com/g/welltested/pickmeup-cqrs/build-status/master)
