@@ -6,30 +6,12 @@ use PickMeUp\App\CommandBus\CommandBus;
 
 class CommandBusTest extends \PHPUnit_Framework_TestCase
 {
-    public function test_it_stores_manually_added_command_handlers()
-    {
-        $handler = $this->getMockBuilder('PickMeUp\App\Handler\CommandHandler')->getMock();
-        $commandBus = new CommandBus();
-        $commandBus->add($handler);
-
-        static::assertSame([$handler], $commandBus->getHandlers());
-    }
-
     public function test_it_stores_command_handlers_added_through_construction()
     {
         $handler = $this->getMockBuilder('PickMeUp\App\Handler\CommandHandler')->getMock();
         $commandBus = new CommandBus([$handler]);
 
         static::assertSame([$handler], $commandBus->getHandlers());
-    }
-
-    public function test_it_allows_to_store_only_unique_command_handlers()
-    {
-        $handler = $this->getMockBuilder('PickMeUp\App\Handler\CommandHandler')->getMock();
-        $handler2 = $this->getMockBuilder('PickMeUp\App\Handler\CommandHandler')->getMock();
-        $commandBus = new CommandBus([$handler, $handler2, $handler]);
-
-        static::assertSame([$handler, $handler2], $commandBus->getHandlers());
     }
 
     public function test_it_finds_command_handler_for_command_to_handle()
