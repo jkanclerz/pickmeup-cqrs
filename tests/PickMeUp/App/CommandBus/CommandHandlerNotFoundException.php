@@ -1,6 +1,8 @@
 <?php
 
-namespace PickMeUp\App\CommandBus;
+namespace Tests\PickMeUp\App\CommandBus;
+
+use PickMeUp\App\CommandBus\CommandHandlerNotFoundException;
 
 class CommandHandlerNotFoundExceptionTest extends \PHPUnit_Framework_TestCase
 {

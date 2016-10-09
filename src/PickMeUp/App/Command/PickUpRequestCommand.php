@@ -6,7 +6,7 @@ use PickMeUp\App\Model\ExpirationMinutes;
 use PickMeUp\App\Model\Geolocation\Coordinates;
 use PickMeUp\App\Model\User;
 
-class PickUpRequestCommand
+class PickUpRequestCommand implements Command
 {
     /**
      * @var User

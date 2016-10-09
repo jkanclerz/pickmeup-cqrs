@@ -2,6 +2,7 @@
 
 namespace Tests\PickMeUp\App\Command;
 
+use PickMeUp\App\Command\Command;
 use PickMeUp\App\Command\PickUpRequestCommand;
 use PickMeUp\App\Model\ExpirationMinutes;
 use PickMeUp\App\Model\Geolocation\Coordinates;
@@ -9,6 +10,18 @@ use PickMeUp\App\Model\User;
 
 class PickUpRequestCommandTest extends \PHPUnit_Framework_TestCase
 {
+    public function test_it_instance_of_command()
+    {
+        $user = $this->getMockBuilder(User::class)->disableOriginalConstructor()->getMock();
+        $coordinatesStart = $this->getMockBuilder(Coordinates::class)->disableOriginalConstructor()->getMock();
+        $coordinatesEnd = $this->getMockBuilder(Coordinates::class)->disableOriginalConstructor()->getMock();
+        $createdAt = new \DateTime();
+        $expirationMinutes = $this->getMockBuilder(ExpirationMinutes::class)->disableOriginalConstructor()->getMock();
+
+        $pickUpRequest = new PickUpRequestCommand($user, $coordinatesStart, $coordinatesEnd, $createdAt, $expirationMinutes);
+        static::assertInstanceOf(Command::class, $pickUpRequest);
+    }
+
     public function test_it_stores_user()
     {
         $user = $this->getMockBuilder(User::class)->disableOriginalConstructor()->getMock();
