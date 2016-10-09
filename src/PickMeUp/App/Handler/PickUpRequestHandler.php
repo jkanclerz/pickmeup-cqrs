@@ -40,6 +40,7 @@ class PickUpRequestHandler implements CommandHandler
             throw new UnsupportedCommandException();
         }
 
+        /** @var \PickMeUp\App\Command\PickUpRequestCommand $command */
         $ride = $this->factory->createFromPickUpRequestCommand($command);
         $this->storage->save($ride);
     }
