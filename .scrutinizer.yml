@@ -29,7 +29,7 @@ build:
             format: 'clover'
     after:
       - 'wget https://scrutinizer-ci.com/ocular.phar'
-      - 'php ocular.phar code-coverage:upload --format=php-clover --repository="g/welltested/interview" coverage.clover'
+      - 'php ocular.phar code-coverage:upload --format=php-clover --repository="g/welltested/pickmeup-cqrs" coverage.clover'
 
 tools:
     external_code_coverage: true
