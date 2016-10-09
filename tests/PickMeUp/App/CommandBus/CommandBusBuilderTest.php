@@ -13,6 +13,16 @@ class CommandBusBuilderTest extends \PHPUnit_Framework_TestCase
         self::assertInstanceOf(CommandBus::class, $builder->build());
     }
 
+    public function test_it_has_implemented_fluent_interface()
+    {
+        $handler = $this->getMockBuilder('PickMeUp\App\Handler\CommandHandler')->getMock();
+
+        $builder = new CommandBusBuilder();
+        $result = $builder->add($handler);
+
+        static::assertSame($builder, $result);
+    }
+
     public function test_it_stores_command_handlers_that_are_injected_into_command_bus()
     {
         $handler = $this->getMockBuilder('PickMeUp\App\Handler\CommandHandler')->getMock();

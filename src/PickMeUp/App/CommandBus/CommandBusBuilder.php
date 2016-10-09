@@ -21,13 +21,14 @@ class CommandBusBuilder
 
     /**
      * @param CommandHandler $handler
+     * @return $this
      */
     public function add(CommandHandler $handler)
     {
-        if (in_array($handler, $this->handlers, true)) {
-            return;
+        if (!in_array($handler, $this->handlers, true)) {
+            $this->handlers[] = $handler;
         }
 
-        $this->handlers[] = $handler;
+        return $this;
     }
 }
