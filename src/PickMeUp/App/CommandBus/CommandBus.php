@@ -26,7 +26,7 @@ class CommandBus
     /**
      * @param CommandHandler $handler
      */
-    public function add(CommandHandler $handler)
+    private function add(CommandHandler $handler)
     {
         if (in_array($handler, $this->handlers, true)) {
             return;
