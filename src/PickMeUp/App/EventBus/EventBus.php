@@ -41,7 +41,11 @@ class EventBus
      */
     private function attach($eventName, EventHandler $handler)
     {
-        if (isset($this->eventHandlerMap[$eventName]) && in_array($handler, $this->eventHandlerMap[$eventName], true)) {
+        if (!isset($this->eventHandlerMap[$eventName])) {
+            $this->eventHandlerMap[$eventName] = [];
+        }
+
+        if (in_array($handler, $this->eventHandlerMap[$eventName], true)) {
             throw new MultipleSameEventHandlerAttachAttemptException();
         }
 

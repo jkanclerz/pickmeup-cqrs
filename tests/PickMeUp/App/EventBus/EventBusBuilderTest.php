@@ -15,24 +15,31 @@ class EventBusBuilderTest extends \PHPUnit_Framework_TestCase
 
     public function test_it_attaches_handlers_to_events()
     {
-        $event = $this->getMockBuilder('PickMeUp\App\Event\Event')->getMock();
-        $event->method('getName')->willReturn('DummyEvent');
+        $event = $this->getEventMock('DummyEvent');
         $handler = $this->getMockBuilder('PickMeUp\App\EventHandler\EventHandler')->getMock();
         $builder = new EventBusBuilder();
-        $builder->attach($event->getName(), $handler);
+        $builder->attach($event::getName(), $handler);
         $eventBus = $builder->build();
 
-        self::assertSame([$event->getName() => [$handler]], $eventBus->getEventHandlerMap());
+        self::assertSame([$event::getName() => [$handler]], $eventBus->getEventHandlerMap());
     }
 
     public function test_it_has_implemented_fluent_interface()
     {
-        $event = $this->getMockBuilder('PickMeUp\App\Event\Event')->getMock();
+        $event = $this->getEventMock('DummyEvent');
         $handler = $this->getMockBuilder('PickMeUp\App\EventHandler\EventHandler')->getMock();
 
         $builder = new EventBusBuilder();
-        $result = $builder->attach($event->getName(), $handler);
+        $result = $builder->attach($event::getName(), $handler);
 
         static::assertSame($builder, $result);
+    }
+
+    private function getEventMock($name)
+    {
+        $mockEvent = \Mockery::mock('alias:PickMeUp\App\Event\Event');
+        $mockEvent->shouldReceive('getName')->andReturn($name);
+
+        return $mockEvent;
     }
 }

@@ -7,5 +7,5 @@ interface Event
     /**
      * @return string
      */
-    public function getName();
+    public static function getName();
 }
