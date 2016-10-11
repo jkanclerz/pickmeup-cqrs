@@ -18,18 +18,18 @@ class EventBusBuilder
     }
 
     /**
-     * @param $eventClass
+     * @param $eventName
      * @param EventHandler $handler
      * @return $this
      * @throws MultipleSameEventHandlerAttachAttemptException
      */
-    public function attach($eventClass, EventHandler $handler)
+    public function attach($eventName, EventHandler $handler)
     {
-        if (isset($this->eventHandlerMap[$eventClass]) && in_array($handler, $this->eventHandlerMap[$eventClass], true)) {
+        if (isset($this->eventHandlerMap[$eventName]) && in_array($handler, $this->eventHandlerMap[$eventName], true)) {
             throw new MultipleSameEventHandlerAttachAttemptException();
         }
 
-        $this->eventHandlerMap[$eventClass][] = $handler;
+        $this->eventHandlerMap[$eventName][] = $handler;
         return $this;
     }
 }
