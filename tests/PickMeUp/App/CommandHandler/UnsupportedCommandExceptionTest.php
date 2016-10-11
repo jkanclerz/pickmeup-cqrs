@@ -2,7 +2,7 @@
 
 namespace Tests\PickMeUp\App\Handler;
 
-use PickMeUp\App\Handler\UnsupportedCommandException;
+use PickMeUp\App\CommandHandler\UnsupportedCommandException;
 
 class UnsupportedCommandExceptionTest extends \PHPUnit_Framework_TestCase
 {

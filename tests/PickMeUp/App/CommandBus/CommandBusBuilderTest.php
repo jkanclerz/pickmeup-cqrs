@@ -15,7 +15,7 @@ class CommandBusBuilderTest extends \PHPUnit_Framework_TestCase
 
     public function test_it_has_implemented_fluent_interface()
     {
-        $handler = $this->getMockBuilder('PickMeUp\App\Handler\CommandHandler')->getMock();
+        $handler = $this->getMockBuilder('PickMeUp\App\CommandHandler\CommandHandler')->getMock();
 
         $builder = new CommandBusBuilder();
         $result = $builder->add($handler);
@@ -25,8 +25,8 @@ class CommandBusBuilderTest extends \PHPUnit_Framework_TestCase
 
     public function test_it_stores_command_handlers_that_are_injected_into_command_bus()
     {
-        $handler = $this->getMockBuilder('PickMeUp\App\Handler\CommandHandler')->getMock();
-        $handler2 = $this->getMockBuilder('PickMeUp\App\Handler\CommandHandler')->getMock();
+        $handler = $this->getMockBuilder('PickMeUp\App\CommandHandler\CommandHandler')->getMock();
+        $handler2 = $this->getMockBuilder('PickMeUp\App\CommandHandler\CommandHandler')->getMock();
 
         $builder = new CommandBusBuilder();
         $builder->add($handler);

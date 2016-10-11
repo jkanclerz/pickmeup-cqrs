@@ -1,6 +1,6 @@
 <?php
 
-namespace PickMeUp\App\Handler;
+namespace PickMeUp\App\CommandHandler;
 
 use PickMeUp\App\Command\Command;
 use PickMeUp\App\Command\RideRequestCommand;
@@ -32,7 +32,7 @@ class RideRequestHandler implements CommandHandler
 
     /**
      * @param Command $command
-     * @throws \PickMeUp\App\Handler\UnsupportedCommandException
+     * @throws \PickMeUp\App\CommandHandler\UnsupportedCommandException
      */
     public function handle(Command $command)
     {

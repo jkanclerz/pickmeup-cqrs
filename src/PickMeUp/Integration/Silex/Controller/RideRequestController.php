@@ -2,7 +2,7 @@
 
 namespace PickMeUp\Integration\Silex\Controller;
 
-use PickMeUp\App\Handler\RideRequestHandler;
+use PickMeUp\App\CommandHandler\RideRequestHandler;
 use PickMeUp\Integration\Silex\Factory\RideRequestCommandFactory;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

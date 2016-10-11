@@ -1,6 +1,6 @@
 <?php
 
-namespace PickMeUp\App\Handler;
+namespace PickMeUp\App\CommandHandler;
 
 use PickMeUp\App\Command\Command;
 

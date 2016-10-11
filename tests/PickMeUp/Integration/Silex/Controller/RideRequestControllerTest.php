@@ -3,7 +3,7 @@
 namespace Tests\PickMeUp\Integration\Silex\Controller;
 
 use PickMeUp\App\Command\RideRequestCommand;
-use PickMeUp\App\Handler\RideRequestHandler;
+use PickMeUp\App\CommandHandler\RideRequestHandler;
 use PickMeUp\Integration\Silex\Controller\RideRequestController;
 use PickMeUp\Integration\Silex\Factory\RideRequestCommandFactory;
 use Symfony\Component\HttpFoundation\Request;

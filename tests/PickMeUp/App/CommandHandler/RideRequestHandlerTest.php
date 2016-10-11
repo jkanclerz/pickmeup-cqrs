@@ -6,7 +6,7 @@ use PickMeUp\App\Command\Command;
 use PickMeUp\App\Command\RideRequestCommand;
 use PickMeUp\App\DAL\Ride\Storage;
 use PickMeUp\App\Factory\RideFactory;
-use PickMeUp\App\Handler\RideRequestHandler;
+use PickMeUp\App\CommandHandler\RideRequestHandler;
 use PickMeUp\App\Model\Ride;
 
 class RideRequestHandlerTest extends \PHPUnit_Framework_TestCase
@@ -22,7 +22,7 @@ class RideRequestHandlerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \PickMeUp\App\Handler\UnsupportedCommandException
+     * @expectedException \PickMeUp\App\CommandHandler\UnsupportedCommandException
      */
     public function test_it_throws_exception_when_invalid_command_is_passed()
     {

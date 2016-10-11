@@ -2,7 +2,7 @@
 
 namespace PickMeUp\App\CommandBus;
 
-use PickMeUp\App\Handler\CommandHandler;
+use PickMeUp\App\CommandHandler\CommandHandler;
 
 class CommandBusBuilder
 {
