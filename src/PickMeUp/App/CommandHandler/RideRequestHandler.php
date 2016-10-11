@@ -2,17 +2,19 @@
 
 namespace PickMeUp\App\CommandHandler;
 
+use PickMeUp\App\Event\CreatedRideRequest;
 use PickMeUp\App\WriteStorage\RideStorage;
 use PickMeUp\CQRS\Command\Command;
 use PickMeUp\App\Command\RideRequestCommand;
 use PickMeUp\App\Factory\RideFactory;
 use PickMeUp\CQRS\CommandHandler\CommandHandler;
 use PickMeUp\CQRS\CommandHandler\UnsupportedCommandException;
+use PickMeUp\CQRS\EventBus\EventBus;
 
 class RideRequestHandler implements CommandHandler
 {
     /**
-     * @var Storage
+     * @var RideStorage
      */
     private $storage;
 
@@ -22,14 +24,21 @@ class RideRequestHandler implements CommandHandler
     private $factory;
 
     /**
+     * @var EventBus
+     */
+    private $eventBus;
+
+    /**
      * RideRequestHandler constructor.
      * @param RideStorage $storage
      * @param RideFactory $factory
+     * @param EventBus $eventBus
      */
-    public function __construct(RideStorage $storage, RideFactory $factory)
+    public function __construct(RideStorage $storage, RideFactory $factory, EventBus $eventBus)
     {
         $this->storage = $storage;
         $this->factory = $factory;
+        $this->eventBus = $eventBus;
     }
 
     /**
@@ -45,6 +54,7 @@ class RideRequestHandler implements CommandHandler
         /** @var \PickMeUp\App\Command\RideRequestCommand $command */
         $ride = $this->factory->createFromRideRequestCommand($command);
         $this->storage->save($ride);
+        $this->eventBus->publish(new CreatedRideRequest($ride));
     }
 
     /**
