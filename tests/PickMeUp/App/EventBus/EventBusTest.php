@@ -4,29 +4,16 @@ namespace Tests\PickMeUp\App\EventBus;
 
 use PickMeUp\App\Event\Event;
 use PickMeUp\App\EventBus\EventBus;
+use PickMeUp\App\EventBus\EventBusBuilder;
 use PickMeUp\App\EventHandler\EventHandler;
 
 class EventBusTest extends \PHPUnit_Framework_TestCase
 {
-    /**
-     * @dataProvider getValidEventHandlerMap
-     */
-    public function test_it_stores_event_handlers_attached_to_events($eventClass, $handlersCount)
+    public function test_it_stores_event_handlers_attached_to_events()
     {
-        $eventHandlerMap = [$eventClass => $this->getHandlerMocks($handlersCount)];
+        $eventHandlerMap = ['DummyEvent' => [$this->getMockBuilder('PickMeUp\App\EventHandler\EventHandler')->getMock()]];
         $eventBus = new EventBus($eventHandlerMap);
         self::assertSame($eventHandlerMap, $eventBus->getEventHandlerMap());
-    }
-
-    public function getValidEventHandlerMap()
-    {
-        $eventClass = get_class($this->getMockBuilder('PickMeUp\App\Event\Event')->getMock());
-        return [
-            [$eventClass, 1],
-            [$eventClass, 2],
-            [$eventClass, 3],
-        ];
-
     }
 
     /**
@@ -40,16 +27,42 @@ class EventBusTest extends \PHPUnit_Framework_TestCase
         new EventBus($eventHandlerMap);
     }
 
-    /**
-     * @param $handlersCount
-     * @return array
-     */
-    private function getHandlerMocks($handlersCount)
+    public function test_it_publishes_event_to_attached_handlers()
     {
-        $handlers = [];
-        for ($i = 1; $i <= $handlersCount; $i++) {
-            $handlers[] = $this->getMockBuilder('PickMeUp\App\EventHandler\EventHandler')->getMock();
-        }
-        return $handlers;
+        $event = $this->getMockBuilder('PickMeUp\App\Event\Event')->getMock();
+        $event->method('getName')->willReturn('FirstEvent');
+
+        $handler = $this->getMockBuilder('PickMeUp\App\EventHandler\EventHandler')->getMock();
+        $handler->expects(self::once())->method('handle');
+        $handler2 = $this->getMockBuilder('PickMeUp\App\EventHandler\EventHandler')->getMock();
+        $handler2->expects(self::once())->method('handle');
+
+        $eventBusBuilder = new EventBusBuilder();
+        $eventBusBuilder->attach($event->getName(), $handler);
+        $eventBusBuilder->attach($event->getName(), $handler2);
+
+        $eventBus = $eventBusBuilder->build();
+        $eventBus->publish($event);
+    }
+
+    public function test_it_doesnt_publish_event_to_not_attached_handlers()
+    {
+        $event = $this->getMockBuilder('PickMeUp\App\Event\Event')->getMock();
+        $event->method('getName')->willReturn('FirstEvent');
+
+        $event2 = $this->getMockBuilder('PickMeUp\App\Event\Event')->getMock();
+        $event2->method('getName')->willReturn('SecondEvent');
+
+        $handler = $this->getMockBuilder('PickMeUp\App\EventHandler\EventHandler')->getMock();
+        $handler->expects(self::never())->method('handle');
+        $handler2 = $this->getMockBuilder('PickMeUp\App\EventHandler\EventHandler')->getMock();
+        $handler2->expects(self::once())->method('handle');
+
+        $eventBusBuilder = new EventBusBuilder();
+        $eventBusBuilder->attach($event->getName(), $handler);
+        $eventBusBuilder->attach($event2->getName(), $handler2);
+
+        $eventBus = $eventBusBuilder->build();
+        $eventBus->publish($event2);
     }
 }

@@ -16,12 +16,13 @@ class EventBusBuilderTest extends \PHPUnit_Framework_TestCase
     public function test_it_attaches_handlers_to_events()
     {
         $event = $this->getMockBuilder('PickMeUp\App\Event\Event')->getMock();
+        $event->method('getName')->willReturn('DummyEvent');
         $handler = $this->getMockBuilder('PickMeUp\App\EventHandler\EventHandler')->getMock();
         $builder = new EventBusBuilder();
-        $builder->attach(get_class($event), $handler);
+        $builder->attach($event->getName(), $handler);
         $eventBus = $builder->build();
 
-        self::assertSame([get_class($event) => [$handler]], $eventBus->getEventHandlerMap());
+        self::assertSame([$event->getName() => [$handler]], $eventBus->getEventHandlerMap());
     }
 
     public function test_it_has_implemented_fluent_interface()
@@ -30,8 +31,7 @@ class EventBusBuilderTest extends \PHPUnit_Framework_TestCase
         $handler = $this->getMockBuilder('PickMeUp\App\EventHandler\EventHandler')->getMock();
 
         $builder = new EventBusBuilder();
-        $result = $builder->attach(get_class($event), $handler);
-
+        $result = $builder->attach($event->getName(), $handler);
 
         static::assertSame($builder, $result);
     }

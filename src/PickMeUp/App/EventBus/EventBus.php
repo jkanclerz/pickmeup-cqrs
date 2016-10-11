@@ -47,4 +47,16 @@ class EventBus
 
         $this->eventHandlerMap[$eventName][] = $handler;
     }
+
+    /**
+     * @param Event $event
+     */
+    public function publish(Event $event)
+    {
+        /** @var EventHandler[] $handlers */
+        $handlers = isset($this->eventHandlerMap[$event->getName()]) ? $this->eventHandlerMap[$event->getName()] : [];
+        foreach ($handlers as $handler) {
+            $handler->handle($event);
+        }
+    }
 }
