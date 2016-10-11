@@ -1,9 +1,9 @@
 <?php
 
-namespace PickMeUp\App\CommandBus;
+namespace PickMeUp\CQRS\CommandBus;
 
-use PickMeUp\App\Command\Command;
-use PickMeUp\App\CommandHandler\CommandHandler;
+use PickMeUp\CQRS\Command\Command;
+use PickMeUp\CQRS\CommandHandler\CommandHandler;
 
 class CommandBus
 {

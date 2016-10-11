@@ -1,8 +1,8 @@
 <?php
 
-namespace Tests\PickMeUp\App\CommandBus;
+namespace Tests\PickMeUp\CQRS\CommandBus;
 
-use PickMeUp\App\EventBus\MultipleSameEventHandlerAttachAttemptException;
+use PickMeUp\CQRS\EventBus\MultipleSameEventHandlerAttachAttemptException;
 
 class MultipleSameEventHandlerAttachAttemptExceptionTest extends \PHPUnit_Framework_TestCase
 {

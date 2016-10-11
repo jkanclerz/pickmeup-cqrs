@@ -5,6 +5,7 @@ namespace PickMeUp\App\Command;
 use PickMeUp\App\Model\ExpirationMinutes;
 use PickMeUp\App\Model\Geolocation\Coordinates;
 use PickMeUp\App\Model\User;
+use PickMeUp\CQRS\Command\Command;
 
 class RideRequestCommand implements Command
 {

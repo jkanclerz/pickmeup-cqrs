@@ -1,6 +1,6 @@
 <?php
 
-namespace PickMeUp\App\CommandHandler;
+namespace PickMeUp\CQRS\CommandHandler;
 
 class UnsupportedCommandException extends \Exception
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace PickMeUp\App\EventBus;
+namespace PickMeUp\CQRS\EventBus;
 
-use PickMeUp\App\EventHandler\EventHandler;
+use PickMeUp\CQRS\EventHandler\EventHandler;
 
 class EventBusBuilder
 {

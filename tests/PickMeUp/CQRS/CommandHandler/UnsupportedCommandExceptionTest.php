@@ -1,8 +1,8 @@
 <?php
 
-namespace Tests\PickMeUp\App\Handler;
+namespace Tests\PickMeUp\CQRS\Handler;
 
-use PickMeUp\App\CommandHandler\UnsupportedCommandException;
+use PickMeUp\CQRS\CommandHandler\UnsupportedCommandException;
 
 class UnsupportedCommandExceptionTest extends \PHPUnit_Framework_TestCase
 {

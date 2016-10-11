@@ -2,10 +2,12 @@
 
 namespace PickMeUp\App\CommandHandler;
 
-use PickMeUp\App\Command\Command;
+use PickMeUp\CQRS\Command\Command;
 use PickMeUp\App\Command\RideRequestCommand;
 use PickMeUp\App\DAL\Ride\Storage;
 use PickMeUp\App\Factory\RideFactory;
+use PickMeUp\CQRS\CommandHandler\CommandHandler;
+use PickMeUp\CQRS\CommandHandler\UnsupportedCommandException;
 
 class RideRequestHandler implements CommandHandler
 {
@@ -32,7 +34,7 @@ class RideRequestHandler implements CommandHandler
 
     /**
      * @param Command $command
-     * @throws \PickMeUp\App\CommandHandler\UnsupportedCommandException
+     * @throws UnsupportedCommandException
      */
     public function handle(Command $command)
     {

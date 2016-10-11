@@ -1,8 +1,8 @@
 <?php
 
-namespace PickMeUp\App\CommandHandler;
+namespace PickMeUp\CQRS\CommandHandler;
 
-use PickMeUp\App\Command\Command;
+use PickMeUp\CQRS\Command\Command;
 
 interface CommandHandler
 {

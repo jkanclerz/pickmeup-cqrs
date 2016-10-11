@@ -1,17 +1,17 @@
 <?php
 
-namespace Tests\PickMeUp\App\EventBus;
+namespace Tests\PickMeUp\CQRS\EventBus;
 
-use PickMeUp\App\Event\Event;
-use PickMeUp\App\EventBus\EventBus;
-use PickMeUp\App\EventBus\EventBusBuilder;
-use PickMeUp\App\EventHandler\EventHandler;
+use PickMeUp\CQRS\Event\Event;
+use PickMeUp\CQRS\EventBus\EventBus;
+use PickMeUp\CQRS\EventBus\EventBusBuilder;
+use PickMeUp\CQRS\EventHandler\EventHandler;
 
 class EventBusTest extends \PHPUnit_Framework_TestCase
 {
     public function test_it_stores_event_handler_attached_to_event()
     {
-        $eventHandlerMap = ['DummyEvent' => [$this->getMockBuilder('PickMeUp\App\EventHandler\EventHandler')->getMock()]];
+        $eventHandlerMap = ['DummyEvent' => [$this->getMockBuilder('PickMeUp\CQRS\EventHandler\EventHandler')->getMock()]];
         $eventBus = new EventBus($eventHandlerMap);
         self::assertSame($eventHandlerMap, $eventBus->getEventHandlerMap());
     }
@@ -20,11 +20,11 @@ class EventBusTest extends \PHPUnit_Framework_TestCase
     {
         $eventHandlerMap = [
             'DummyEvent' => [
-                $this->getMockBuilder('PickMeUp\App\EventHandler\EventHandler')->setMockClassName('DummyHandler')->getMock(),
-                $this->getMockBuilder('PickMeUp\App\EventHandler\EventHandler')->setMockClassName('FancyHandler')->getMock()
+                $this->getMockBuilder('PickMeUp\CQRS\EventHandler\EventHandler')->setMockClassName('DummyHandler')->getMock(),
+                $this->getMockBuilder('PickMeUp\CQRS\EventHandler\EventHandler')->setMockClassName('FancyHandler')->getMock()
             ],
             'FancyEvent' => [
-                $this->getMockBuilder('PickMeUp\App\EventHandler\EventHandler')->getMock(),
+                $this->getMockBuilder('PickMeUp\CQRS\EventHandler\EventHandler')->getMock(),
             ],
         ];
         $eventBus = new EventBus($eventHandlerMap);
@@ -32,12 +32,12 @@ class EventBusTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \PickMeUp\App\EventBus\MultipleSameEventHandlerAttachAttemptException
+     * @expectedException \PickMeUp\CQRS\EventBus\MultipleSameEventHandlerAttachAttemptException
      */
     public function test_it_allows_attach_unique_eventhandlers_to_specific_event()
     {
-        $event = $this->getMockBuilder('PickMeUp\App\Event\Event')->getMock();
-        $handler = $this->getMockBuilder('PickMeUp\App\EventHandler\EventHandler')->getMock();
+        $event = $this->getMockBuilder('PickMeUp\CQRS\Event\Event')->getMock();
+        $handler = $this->getMockBuilder('PickMeUp\CQRS\EventHandler\EventHandler')->getMock();
         $eventHandlerMap = [get_class($event) => [$handler, $handler]];
         new EventBus($eventHandlerMap);
     }
@@ -46,9 +46,9 @@ class EventBusTest extends \PHPUnit_Framework_TestCase
     {
         $event = $this->getEventMock('FirstEvent');
 
-        $handler = $this->getMockBuilder('PickMeUp\App\EventHandler\EventHandler')->getMock();
+        $handler = $this->getMockBuilder('PickMeUp\CQRS\EventHandler\EventHandler')->getMock();
         $handler->expects(self::once())->method('handle');
-        $handler2 = $this->getMockBuilder('PickMeUp\App\EventHandler\EventHandler')->getMock();
+        $handler2 = $this->getMockBuilder('PickMeUp\CQRS\EventHandler\EventHandler')->getMock();
         $handler2->expects(self::once())->method('handle');
 
         $eventBusBuilder = new EventBusBuilder();
@@ -64,9 +64,9 @@ class EventBusTest extends \PHPUnit_Framework_TestCase
         $event = $this->getEventMock('FirstEvent');
         $event2 = $this->getEventMock('SecondEvent');
 
-        $handler = $this->getMockBuilder('PickMeUp\App\EventHandler\EventHandler')->getMock();
+        $handler = $this->getMockBuilder('PickMeUp\CQRS\EventHandler\EventHandler')->getMock();
         $handler->expects(self::never())->method('handle');
-        $handler2 = $this->getMockBuilder('PickMeUp\App\EventHandler\EventHandler')->getMock();
+        $handler2 = $this->getMockBuilder('PickMeUp\CQRS\EventHandler\EventHandler')->getMock();
         $handler2->expects(self::once())->method('handle');
 
         $eventBusBuilder = new EventBusBuilder();
@@ -79,7 +79,7 @@ class EventBusTest extends \PHPUnit_Framework_TestCase
 
     private function getEventMock($name)
     {
-        $mockEvent = \Mockery::namedMock($name, 'PickMeUp\App\Event\Event');
+        $mockEvent = \Mockery::namedMock($name, 'PickMeUp\CQRS\Event\Event');
         $mockEvent->shouldReceive('getName')->andReturn($name);
 
         return $mockEvent;

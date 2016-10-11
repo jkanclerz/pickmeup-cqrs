@@ -1,6 +1,6 @@
 <?php
 
-namespace PickMeUp\App\EventBus;
+namespace PickMeUp\CQRS\EventBus;
 
 class MultipleSameEventHandlerAttachAttemptException extends \Exception
 {

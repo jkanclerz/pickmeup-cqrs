@@ -1,6 +1,6 @@
 <?php
 
-namespace PickMeUp\App\CommandBus;
+namespace PickMeUp\CQRS\CommandBus;
 
 class CommandHandlerNotFoundException extends \Exception
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace PickMeUp\App\EventBus;
+namespace PickMeUp\CQRS\EventBus;
 
-use PickMeUp\App\Event\Event;
-use PickMeUp\App\EventHandler\EventHandler;
+use PickMeUp\CQRS\Event\Event;
+use PickMeUp\CQRS\EventHandler\EventHandler;
 
 class EventBus
 {
@@ -15,7 +15,7 @@ class EventBus
     /**
      * EventBus constructor.
      * @param array $eventHandlerMap
-     * @throws \PickMeUp\App\EventBus\MultipleSameEventHandlerAttachAttemptException
+     * @throws \PickMeUp\CQRS\EventBus\MultipleSameEventHandlerAttachAttemptException
      */
     public function __construct(array $eventHandlerMap = [])
     {

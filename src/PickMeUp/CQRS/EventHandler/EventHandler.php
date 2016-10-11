@@ -1,8 +1,8 @@
 <?php
 
-namespace PickMeUp\App\EventHandler;
+namespace PickMeUp\CQRS\EventHandler;
 
-use PickMeUp\App\Event\Event;
+use PickMeUp\CQRS\Event\Event;
 
 interface EventHandler
 {

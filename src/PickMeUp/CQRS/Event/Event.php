@@ -1,6 +1,6 @@
 <?php
 
-namespace PickMeUp\App\Event;
+namespace PickMeUp\CQRS\Event;
 
 interface Event
 {

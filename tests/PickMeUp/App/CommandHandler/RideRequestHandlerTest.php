@@ -1,13 +1,13 @@
 <?php
 
-namespace Tests\PickMeUp\AppG\Handler;
+namespace Tests\PickMeUp\CQRS\CommandHandler;
 
-use PickMeUp\App\Command\Command;
 use PickMeUp\App\Command\RideRequestCommand;
 use PickMeUp\App\DAL\Ride\Storage;
 use PickMeUp\App\Factory\RideFactory;
 use PickMeUp\App\CommandHandler\RideRequestHandler;
 use PickMeUp\App\Model\Ride;
+use PickMeUp\CQRS\Command\Command;
 
 class RideRequestHandlerTest extends \PHPUnit_Framework_TestCase
 {
@@ -22,7 +22,7 @@ class RideRequestHandlerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \PickMeUp\App\CommandHandler\UnsupportedCommandException
+     * @expectedException \PickMeUp\CQRS\CommandHandler\UnsupportedCommandException
      */
     public function test_it_throws_exception_when_invalid_command_is_passed()
     {

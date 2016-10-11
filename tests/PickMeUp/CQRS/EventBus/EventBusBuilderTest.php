@@ -1,9 +1,9 @@
 <?php
 
-namespace Tests\PickMeUp\App\EventBus;
+namespace Tests\PickMeUp\CQRS\EventBus;
 
-use PickMeUp\App\EventBus\EventBus;
-use PickMeUp\App\EventBus\EventBusBuilder;
+use PickMeUp\CQRS\EventBus\EventBus;
+use PickMeUp\CQRS\EventBus\EventBusBuilder;
 
 class EventBusBuilderTest extends \PHPUnit_Framework_TestCase
 {
@@ -16,7 +16,7 @@ class EventBusBuilderTest extends \PHPUnit_Framework_TestCase
     public function test_it_attaches_handlers_to_events()
     {
         $event = $this->getEventMock('DummyEvent');
-        $handler = $this->getMockBuilder('PickMeUp\App\EventHandler\EventHandler')->getMock();
+        $handler = $this->getMockBuilder('PickMeUp\CQRS\EventHandler\EventHandler')->getMock();
         $builder = new EventBusBuilder();
         $builder->attach($event::getName(), $handler);
         $eventBus = $builder->build();
@@ -27,7 +27,7 @@ class EventBusBuilderTest extends \PHPUnit_Framework_TestCase
     public function test_it_has_implemented_fluent_interface()
     {
         $event = $this->getEventMock('DummyEvent');
-        $handler = $this->getMockBuilder('PickMeUp\App\EventHandler\EventHandler')->getMock();
+        $handler = $this->getMockBuilder('PickMeUp\CQRS\EventHandler\EventHandler')->getMock();
 
         $builder = new EventBusBuilder();
         $result = $builder->attach($event::getName(), $handler);
@@ -37,7 +37,7 @@ class EventBusBuilderTest extends \PHPUnit_Framework_TestCase
 
     private function getEventMock($name)
     {
-        $mockEvent = \Mockery::mock('alias:PickMeUp\App\Event\Event');
+        $mockEvent = \Mockery::mock('alias:PickMeUp\CQRS\Event\Event');
         $mockEvent->shouldReceive('getName')->andReturn($name);
 
         return $mockEvent;

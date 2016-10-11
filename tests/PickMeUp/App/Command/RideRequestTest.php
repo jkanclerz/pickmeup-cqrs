@@ -2,11 +2,11 @@
 
 namespace Tests\PickMeUp\App\Command;
 
-use PickMeUp\App\Command\Command;
 use PickMeUp\App\Command\RideRequestCommand;
 use PickMeUp\App\Model\ExpirationMinutes;
 use PickMeUp\App\Model\Geolocation\Coordinates;
 use PickMeUp\App\Model\User;
+use PickMeUp\CQRS\Command\Command;
 
 class RideRequestCommandTest extends \PHPUnit_Framework_TestCase
 {
