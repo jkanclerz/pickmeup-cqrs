@@ -14,3 +14,4 @@ That's why i use [PHPUnit](https://phpunit.de/), [Scrutinizer-CI](https://scruti
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/welltested/pickmeup-cqrs/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/welltested/pickmeup-cqrs/?branch=master)
 [![Code Coverage](https://scrutinizer-ci.com/g/welltested/pickmeup-cqrs/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/welltested/pickmeup-cqrs/?branch=master)
 [![Build Status](https://scrutinizer-ci.com/g/welltested/pickmeup-cqrs/badges/build.png?b=master)](https://scrutinizer-ci.com/g/welltested/pickmeup-cqrs/build-status/master)
+[![Build Status](https://travis-ci.org/welltested/pickmeup-cqrs.svg?branch=master)](https://travis-ci.org/welltested/pickmeup-cqrs)
