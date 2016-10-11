@@ -1,8 +1,8 @@
-# PickMeUp! CQRS/ES Implementation Application
+# PickMeUp! CQRS Implementation Application
 
 This repository has been created to check, learn and code in CQRS/ES convention.
 
-Don't consider this as a "real" and correct CQRS/ES implementation also at this stage. 
+Don't consider this as a "real" and correct CQRS implementation also at this stage. 
 It's just my playground.
 
 
