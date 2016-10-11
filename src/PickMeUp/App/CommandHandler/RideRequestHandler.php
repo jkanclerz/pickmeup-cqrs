@@ -2,9 +2,9 @@
 
 namespace PickMeUp\App\CommandHandler;
 
+use PickMeUp\App\WriteStorage\RideStorage;
 use PickMeUp\CQRS\Command\Command;
 use PickMeUp\App\Command\RideRequestCommand;
-use PickMeUp\App\DAL\Ride\Storage;
 use PickMeUp\App\Factory\RideFactory;
 use PickMeUp\CQRS\CommandHandler\CommandHandler;
 use PickMeUp\CQRS\CommandHandler\UnsupportedCommandException;
@@ -23,10 +23,10 @@ class RideRequestHandler implements CommandHandler
 
     /**
      * RideRequestHandler constructor.
-     * @param Storage $storage
+     * @param RideStorage $storage
      * @param RideFactory $factory
      */
-    public function __construct(Storage $storage, RideFactory $factory)
+    public function __construct(RideStorage $storage, RideFactory $factory)
     {
         $this->storage = $storage;
         $this->factory = $factory;
