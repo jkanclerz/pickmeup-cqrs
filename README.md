@@ -20,3 +20,6 @@ That's why i use [PHPUnit](https://phpunit.de/), [Scrutinizer-CI](https://scruti
 
 - [X] Implement Command/EventHandlers 
 - [ ] Code whole UBER-wannabe-application
+
+
+### Found bug, misconception, got new ideas? Let's talk! Feel free to create issue
