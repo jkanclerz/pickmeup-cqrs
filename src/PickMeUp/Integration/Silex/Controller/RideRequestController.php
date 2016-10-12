@@ -3,7 +3,10 @@
 namespace PickMeUp\Integration\Silex\Controller;
 
 use PickMeUp\App\CommandHandler\RideRequestHandler;
+use PickMeUp\App\Model\RideId;
 use PickMeUp\Integration\Silex\Factory\RideRequestCommandFactory;
+use Ramsey\Uuid\Uuid;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -41,12 +44,14 @@ class RideRequestController
 
     /**
      * @param Request $request
-     * @return Response
+     * @return JsonResponse
      */
     public function post(Request $request)
     {
         try {
+            $rideId = new RideId(Uuid::uuid4());
             $command = $this->factory->create(
+                $rideId,
                 $request->get(RideRequestController::KEY_USER_UUID),
                 $request->get(RideRequestController::KEY_EXPIRATION_MINUTES),
                 $request->get(RideRequestController::KEY_LATITUDE_START),
@@ -56,9 +61,9 @@ class RideRequestController
             );
             $this->handler->handle($command);
 
-            return new Response();
+            return new JsonResponse(['ride' => $rideId->getUuid()]);
         } catch (\InvalidArgumentException $e) {
-            return new Response('', Response::HTTP_BAD_REQUEST);
+            return new JsonResponse([], Response::HTTP_BAD_REQUEST);
         }
     }
 }

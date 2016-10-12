@@ -63,6 +63,22 @@ class RideRequestControllerTest extends \PHPUnit_Framework_TestCase
         static::assertSame(Response::HTTP_OK, $response->getStatusCode());
     }
 
+    public function test_it_returns_ride_id_when_ride_request_is_successfully_handled()
+    {
+        $request = $this->getMockBuilder(Request::class)->disableOriginalConstructor()->getMock();
+        $rideRequest = $this->getMockBuilder(RideRequestCommand::class)->disableOriginalConstructor()->getMock();
+        $factory = $this->getMockBuilder(RideRequestCommandFactory::class)->disableOriginalConstructor()->getMock();
+        $factory->expects(static::once())->method('create')->willReturn($rideRequest);
+
+        $handler = $this->getMockBuilder(RideRequestHandler::class)->disableOriginalConstructor()->getMock();
+        $handler->expects(self::once())->method('handle')->with($rideRequest);
+
+        $controller = new RideRequestController($handler, $factory);
+        $response = $controller->post($request);
+        $content = json_decode($response->getContent(), true);
+        static::assertTrue(isset($content['ride']));
+    }
+
     /**
      * @return \PHPUnit_Framework_MockObject_MockObject
      */

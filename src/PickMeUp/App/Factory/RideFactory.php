@@ -13,12 +13,6 @@ class RideFactory
      */
     public function createFromRideRequestCommand(RideRequestCommand $command)
     {
-        return new Ride(
-            $command->getUserId(),
-            $command->getCoordinatesStart(),
-            $command->getCoordinatesEnd(),
-            $command->getCreatedAt(),
-            $command->getExpirationMinutes()
-        );
+        return Ride::applyRideRequestCommand($command);
     }
 }

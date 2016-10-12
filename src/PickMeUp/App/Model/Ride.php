@@ -2,6 +2,7 @@
 
 namespace PickMeUp\App\Model;
 
+use PickMeUp\App\Command\RideRequestCommand;
 use PickMeUp\App\Model\Geolocation\Coordinates;
 use PickMeUp\App\WriteStorage\Result\RideResult;
 
@@ -58,6 +59,24 @@ class Ride
         $ride->coordinatesStart = $rideResult->getCoordinatesStart();
         $ride->coordinatesEnd = $rideResult->getCoordinatesEnd();
         $ride->expirationMinutes = $rideResult->getExpirationMinutes();
+
+        return $ride;
+    }
+
+    /**
+     * @param RideRequestCommand $command
+     * @return Ride
+     */
+    public static function applyRideRequestCommand(RideRequestCommand $command)
+    {
+        $ride = new static();
+        $ride->rideId = $command->getRequesterId();
+        $ride->requesterId = $command->getRequesterId();
+        $ride->createdAt = $command->getCreatedAt();
+        $ride->coordinatesStart = $command->getCoordinatesStart();
+        $ride->coordinatesEnd = $command->getCoordinatesEnd();
+        $ride->expirationMinutes = $command->getExpirationMinutes();
+        $ride->status = self::STATUS_PENDING;
 
         return $ride;
     }
