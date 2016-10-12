@@ -2,6 +2,7 @@
 
 namespace PickMeUp\App\Model;
 
+use PickMeUp\App\Command\RideExpireCommand;
 use PickMeUp\App\Command\RideRequestCommand;
 use PickMeUp\App\Model\Geolocation\Coordinates;
 use PickMeUp\App\WriteStorage\Result\RideResult;
@@ -9,6 +10,7 @@ use PickMeUp\App\WriteStorage\Result\RideResult;
 class Ride
 {
     const STATUS_PENDING = 'pending';
+    const STATUS_EXPIRED = 'expired';
 
     /**
      * @var RideId
@@ -79,6 +81,11 @@ class Ride
         $ride->status = self::STATUS_PENDING;
 
         return $ride;
+    }
+
+    public function applyRideExpireCommand(RideExpireCommand $command)
+    {
+        $this->status = self::STATUS_EXPIRED;
     }
 
     /**

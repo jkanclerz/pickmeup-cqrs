@@ -2,6 +2,7 @@
 
 namespace tests\PickMeUp\App\Model;
 
+use PickMeUp\App\Command\RideExpireCommand;
 use PickMeUp\App\Model\ExpirationMinutes;
 use PickMeUp\App\Model\Geolocation\Coordinates;
 use PickMeUp\App\Model\Ride;
@@ -76,5 +77,14 @@ class RideTest extends \PHPUnit_Framework_TestCase
         $result->setStatus(Ride::STATUS_PENDING);
         $ride = Ride::createFromRideResult($result);
         static::assertSame(Ride::STATUS_PENDING, $ride->getStatus());
+    }
+
+    public function test_it_can_be_expired()
+    {
+        $result = new RideResult();
+        $result->setStatus(Ride::STATUS_PENDING);
+        $ride = Ride::createFromRideResult($result);
+        $ride->applyRideExpireCommand($this->getMockBuilder(RideExpireCommand::class)->disableOriginalConstructor()->getMock());
+        static::assertSame(Ride::STATUS_EXPIRED, $ride->getStatus());
     }
 }
