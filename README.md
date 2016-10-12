@@ -16,12 +16,22 @@ That's why i use [PHPUnit](https://phpunit.de/), [Scrutinizer-CI](https://scruti
 [![Build Status](https://scrutinizer-ci.com/g/welltested/pickmeup-cqrs/badges/build.png?b=master)](https://scrutinizer-ci.com/g/welltested/pickmeup-cqrs/build-status/master)
 [![Build Status](https://travis-ci.org/welltested/pickmeup-cqrs.svg?branch=master)](https://travis-ci.org/welltested/pickmeup-cqrs)
 
-# Goals
+Instalation
+-----------
+
+```bash
+$ composer create-project "welltested/pickmeup-cqrs":"dev-master"
+
+```
+
+Goals
+-----
 
 - [X] Implement Command/EventHandlers 
 - [ ] Code whole UBER-wannabe-application
 
-# Found...
+Found...
+--------
 
 -  bug?
 
