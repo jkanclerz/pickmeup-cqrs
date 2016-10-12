@@ -10,6 +10,11 @@ use PickMeUp\App\WriteStorage\Result\RideResult;
 
 class RideTest extends \PHPUnit_Framework_TestCase
 {
+    public function test_it_can_be_reproduced_using_ride_result()
+    {
+        static::assertInstanceOf(Ride::class, Ride::loadFromRideResult(new RideResult()));
+    }
+
     public function test_it_stores_requester()
     {
         $requesterId = $this->getMockBuilder(UserId::class)->disableOriginalConstructor()->getMock();
