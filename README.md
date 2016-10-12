@@ -16,10 +16,17 @@ That's why i use [PHPUnit](https://phpunit.de/), [Scrutinizer-CI](https://scruti
 [![Build Status](https://scrutinizer-ci.com/g/welltested/pickmeup-cqrs/badges/build.png?b=master)](https://scrutinizer-ci.com/g/welltested/pickmeup-cqrs/build-status/master)
 [![Build Status](https://travis-ci.org/welltested/pickmeup-cqrs.svg?branch=master)](https://travis-ci.org/welltested/pickmeup-cqrs)
 
-## Goals
+# Goals
 
 - [X] Implement Command/EventHandlers 
 - [ ] Code whole UBER-wannabe-application
 
+# Found...
 
-#### Found bug, misconception, got new ideas? Let's talk! Feel free to create issue
+-  bug?
+
+-  misconception?
+
+- new idea? 
+
+Let's talk! Feel free to create issue
