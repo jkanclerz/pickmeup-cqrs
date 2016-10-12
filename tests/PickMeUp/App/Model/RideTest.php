@@ -69,4 +69,12 @@ class RideTest extends \PHPUnit_Framework_TestCase
         $ride = Ride::createFromRideResult($result);
         static::assertSame($expirationMinutes, $ride->getExpirationMinutes());
     }
+
+    public function test_it_stores_status()
+    {
+        $result = new RideResult();
+        $result->setStatus(Ride::STATUS_PENDING);
+        $ride = Ride::createFromRideResult($result);
+        static::assertSame(Ride::STATUS_PENDING, $ride->getStatus());
+    }
 }
