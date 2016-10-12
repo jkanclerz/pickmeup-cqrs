@@ -4,13 +4,13 @@ namespace PickMeUp\App\Command;
 
 use PickMeUp\App\Model\ExpirationMinutes;
 use PickMeUp\App\Model\Geolocation\Coordinates;
-use PickMeUp\App\Model\User;
+use PickMeUp\App\Model\UserId;
 use PickMeUp\CQRS\Command\Command;
 
 class RideRequestCommand implements Command
 {
     /**
-     * @var User
+     * @var UserId
      */
     private $user;
 
@@ -35,13 +35,13 @@ class RideRequestCommand implements Command
     private $expirationMinutes;
 
     /**
-     * @param User $user
+     * @param UserId $user
      * @param Coordinates $coordinatesStart
      * @param Coordinates $coordinatesEnd
      * @param \DateTime $createdAt
      * @param ExpirationMinutes $expirationMinutes
      */
-    public function __construct(User $user, Coordinates $coordinatesStart, Coordinates $coordinatesEnd, \DateTime $createdAt, ExpirationMinutes $expirationMinutes)
+    public function __construct(UserId $user, Coordinates $coordinatesStart, Coordinates $coordinatesEnd, \DateTime $createdAt, ExpirationMinutes $expirationMinutes)
     {
         $this->user = $user;
         $this->coordinatesStart = $coordinatesStart;
@@ -51,9 +51,9 @@ class RideRequestCommand implements Command
     }
 
     /**
-     * @return User
+     * @return UserId
      */
-    public function getUser()
+    public function getUserId()
     {
         return $this->user;
     }

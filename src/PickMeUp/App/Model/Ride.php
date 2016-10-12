@@ -3,15 +3,21 @@
 namespace PickMeUp\App\Model;
 
 use PickMeUp\App\Model\Geolocation\Coordinates;
+use PickMeUp\App\WriteStorage\Result\RideResult;
 
 class Ride
 {
     const STATUS_PENDING = 'pending';
 
     /**
-     * @var User
+     * @var RideId
      */
-    private $requester;
+    private $rideId;
+
+    /**
+     * @var UserId
+     */
+    private $requesterId;
 
     /**
      * @var Coordinates
@@ -39,34 +45,29 @@ class Ride
     private $status;
 
     /**
-     * @param User $requester
-     * @param Coordinates $coordinatesStart
-     * @param Coordinates $coordinatesEnd
-     * @param \DateTime $createdAt
-     * @param ExpirationMinutes $expirationMinutes
+     * @param RideResult $rideResult
+     * @return Ride
      */
-    public function __construct(User $requester, Coordinates $coordinatesStart, Coordinates $coordinatesEnd, \DateTime $createdAt, ExpirationMinutes $expirationMinutes)
+    public static function loadFromRideResult(RideResult $rideResult)
     {
-        $this->requester = $requester;
-        $this->coordinatesStart = $coordinatesStart;
-        $this->coordinatesEnd = $coordinatesEnd;
-        $this->createdAt = $createdAt;
-        $this->expirationMinutes = $expirationMinutes;
+        $ride = new static();
+        $ride->rideId = $rideResult->getRequesterId();
+        $ride->requesterId = $rideResult->getRequesterId();
+        $ride->createdAt = $rideResult->getCreatedAt();
+        $ride->status = $rideResult->getStatus();
+        $ride->coordinatesStart = $rideResult->getCoordinatesStart();
+        $ride->coordinatesEnd = $rideResult->getCoordinatesEnd();
+        $ride->expirationMinutes = $rideResult->getExpirationMinutes();
 
-        $this->setInitialStatus();
-    }
-
-    private function setInitialStatus()
-    {
-        $this->status = self::STATUS_PENDING;
+        return $ride;
     }
 
     /**
-     * @return User
+     * @return UserId
      */
-    public function getRequester()
+    public function getRequesterId()
     {
-        return $this->requester;
+        return $this->requesterId;
     }
 
     /**
@@ -104,5 +105,13 @@ class Ride
     public function getStatus()
     {
         return $this->status;
+    }
+
+    /**
+     * @return RideId
+     */
+    public function getRideId()
+    {
+        return $this->rideId;
     }
 }

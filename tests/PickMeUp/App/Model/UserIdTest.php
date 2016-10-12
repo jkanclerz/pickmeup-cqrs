@@ -2,14 +2,14 @@
 
 namespace Tests\PickMeUp\App\Model;
 
-use PickMeUp\App\Model\User;
+use PickMeUp\App\Model\UserId;
 
-class UserTest extends \PHPUnit_Framework_TestCase
+class UserIdTest extends \PHPUnit_Framework_TestCase
 {
     public function test_user_stores_own_unique_id()
     {
         $uuid = uniqid('PickMeUp!', true);
-        $user = new User($uuid);
+        $user = new UserId($uuid);
         static::assertSame($uuid, $user->getUuid());
     }
 }

@@ -14,7 +14,7 @@ class RideFactory
     public function createFromRideRequestCommand(RideRequestCommand $command)
     {
         return new Ride(
-            $command->getUser(),
+            $command->getUserId(),
             $command->getCoordinatesStart(),
             $command->getCoordinatesEnd(),
             $command->getCreatedAt(),

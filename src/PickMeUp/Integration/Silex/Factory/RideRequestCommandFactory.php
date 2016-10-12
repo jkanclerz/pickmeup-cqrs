@@ -7,7 +7,7 @@ use PickMeUp\App\Model\ExpirationMinutes;
 use PickMeUp\App\Model\Geolocation\Coordinates;
 use PickMeUp\App\Model\Geolocation\Latitude;
 use PickMeUp\App\Model\Geolocation\Longitude;
-use PickMeUp\App\Model\User;
+use PickMeUp\App\Model\UserId;
 
 class RideRequestCommandFactory
 {
@@ -29,7 +29,7 @@ class RideRequestCommandFactory
         $latitudeEnd,
         $longitudeEnd
     ) {
-        $user = new User($userUuid);
+        $user = new UserId($userUuid);
         $expirationMinutes = new ExpirationMinutes((int) $expirationMinutes);
         $coordinatesStart = new Coordinates(new Latitude($latitudeStart), new Longitude($longitudeStart));
         $coordinatesEnd = new Coordinates(new Latitude($latitudeEnd), new Longitude($longitudeEnd));

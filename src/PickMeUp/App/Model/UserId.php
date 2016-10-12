@@ -2,7 +2,7 @@
 
 namespace PickMeUp\App\Model;
 
-class User
+class UserId
 {
     /**
      * @var string
@@ -10,7 +10,7 @@ class User
     private $uuid;
 
     /**
-     * User constructor.
+     * UserId constructor.
      * @param $uuid
      */
     public function __construct($uuid)
