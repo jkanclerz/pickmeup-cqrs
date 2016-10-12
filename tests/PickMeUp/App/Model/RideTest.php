@@ -5,6 +5,7 @@ namespace tests\PickMeUp\App\Model;
 use PickMeUp\App\Model\ExpirationMinutes;
 use PickMeUp\App\Model\Geolocation\Coordinates;
 use PickMeUp\App\Model\Ride;
+use PickMeUp\App\Model\RideId;
 use PickMeUp\App\Model\UserId;
 use PickMeUp\App\WriteStorage\Result\RideResult;
 
@@ -15,7 +16,16 @@ class RideTest extends \PHPUnit_Framework_TestCase
         static::assertInstanceOf(Ride::class, Ride::createFromRideResult(new RideResult()));
     }
 
-    public function test_it_stores_requester()
+    public function test_it_stores_ride_id()
+    {
+        $rideId = $this->getMockBuilder(RideId::class)->disableOriginalConstructor()->getMock();
+        $result = new RideResult();
+        $result->setRideId($rideId);
+        $ride = Ride::createFromRideResult($result);
+        static::assertSame($rideId, $ride->getRideId());
+    }
+
+    public function test_it_stores_requester_id()
     {
         $requesterId = $this->getMockBuilder(UserId::class)->disableOriginalConstructor()->getMock();
         $result = new RideResult();

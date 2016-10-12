@@ -52,7 +52,7 @@ class Ride
     public static function createFromRideResult(RideResult $rideResult)
     {
         $ride = new static();
-        $ride->rideId = $rideResult->getRequesterId();
+        $ride->rideId = $rideResult->getRideId();
         $ride->requesterId = $rideResult->getRequesterId();
         $ride->createdAt = $rideResult->getCreatedAt();
         $ride->status = $rideResult->getStatus();
@@ -70,7 +70,7 @@ class Ride
     public static function applyRideRequestCommand(RideRequestCommand $command)
     {
         $ride = new static();
-        $ride->rideId = $command->getRequesterId();
+        $ride->rideId = $command->getRideId();
         $ride->requesterId = $command->getRequesterId();
         $ride->createdAt = $command->getCreatedAt();
         $ride->coordinatesStart = $command->getCoordinatesStart();
