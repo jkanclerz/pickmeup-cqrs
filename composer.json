@@ -1,4 +1,13 @@
 {
+    "name": "welltested/pickmeup-cqrs",
+    "type": "project",
+    "description": "PickMeUp! CQRS Implementation Application",
+    "homepage": "https://github.com/welltested/pickmeup-cqrs",
+    "authors": [
+        {
+            "name": "Dominik Jagło"
+        }
+    ],
     "autoload": {
         "psr-0": {
             "Tests": "tests/",

@@ -4,7 +4,6 @@ namespace Tests\PickMeUp\App\Event;
 
 use PickMeUp\App\Event\CreatedRideRequest;
 use PickMeUp\App\Model\Ride;
-use PickMeUp\CQRS\Event\Event;
 
 class CreatedRideRequestTest extends \PHPUnit_Framework_TestCase
 {
