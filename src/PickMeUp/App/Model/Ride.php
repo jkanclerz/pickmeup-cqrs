@@ -48,7 +48,7 @@ class Ride
      * @param RideResult $rideResult
      * @return Ride
      */
-    public static function loadFromRideResult(RideResult $rideResult)
+    public static function createFromRideResult(RideResult $rideResult)
     {
         $ride = new static();
         $ride->rideId = $rideResult->getRequesterId();

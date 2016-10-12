@@ -12,7 +12,7 @@ class RideTest extends \PHPUnit_Framework_TestCase
 {
     public function test_it_can_be_reproduced_using_ride_result()
     {
-        static::assertInstanceOf(Ride::class, Ride::loadFromRideResult(new RideResult()));
+        static::assertInstanceOf(Ride::class, Ride::createFromRideResult(new RideResult()));
     }
 
     public function test_it_stores_requester()
@@ -20,7 +20,7 @@ class RideTest extends \PHPUnit_Framework_TestCase
         $requesterId = $this->getMockBuilder(UserId::class)->disableOriginalConstructor()->getMock();
         $result = new RideResult();
         $result->setRequesterId($requesterId);
-        $ride = Ride::loadFromRideResult($result);
+        $ride = Ride::createFromRideResult($result);
         static::assertSame($requesterId, $ride->getRequesterId());
     }
 
@@ -29,7 +29,7 @@ class RideTest extends \PHPUnit_Framework_TestCase
         $coordinatesStart = $this->getMockBuilder(Coordinates::class)->disableOriginalConstructor()->getMock();
         $result = new RideResult();
         $result->setCoordinatesStart($coordinatesStart);
-        $ride = Ride::loadFromRideResult($result);
+        $ride = Ride::createFromRideResult($result);
         static::assertSame($coordinatesStart, $ride->getCoordinatesStart());
     }
 
@@ -38,7 +38,7 @@ class RideTest extends \PHPUnit_Framework_TestCase
         $coordinatesEnd = $this->getMockBuilder(Coordinates::class)->disableOriginalConstructor()->getMock();
         $result = new RideResult();
         $result->setCoordinatesEnd($coordinatesEnd);
-        $ride = Ride::loadFromRideResult($result);
+        $ride = Ride::createFromRideResult($result);
         static::assertSame($coordinatesEnd, $ride->getCoordinatesEnd());
     }
 
@@ -47,7 +47,7 @@ class RideTest extends \PHPUnit_Framework_TestCase
         $createdAt = new \DateTime();
         $result = new RideResult();
         $result->setCreatedAt($createdAt);
-        $ride = Ride::loadFromRideResult($result);
+        $ride = Ride::createFromRideResult($result);
         static::assertSame($createdAt, $ride->getCreatedAt());
     }
 
@@ -56,7 +56,7 @@ class RideTest extends \PHPUnit_Framework_TestCase
         $expirationMinutes = $this->getMockBuilder(ExpirationMinutes::class)->disableOriginalConstructor()->getMock();
         $result = new RideResult();
         $result->setExpirationMinutes($expirationMinutes);
-        $ride = Ride::loadFromRideResult($result);
+        $ride = Ride::createFromRideResult($result);
         static::assertSame($expirationMinutes, $ride->getExpirationMinutes());
     }
 }
